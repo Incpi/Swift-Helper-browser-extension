@@ -1,0 +1,16 @@
+.tab img {
+    width: 100%;
+    margin: 2rem 0rem;
+    border: .05em solid grey;
+}
+
+pre {
+    text-wrap: pretty
+}
+
+@media screen and (max-width: 800px) {
+    .tab img {
+        margin: 1em 0em;
+        border: .05em solid grey;
+    }
+}

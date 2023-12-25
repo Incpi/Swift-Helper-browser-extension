@@ -1,0 +1,107 @@
+:root {
+    /* colors */
+    --sx-color: #002d75;
+    --sx-white: #fff;
+    --sx-dark-green: #008000;
+    --sx-light-green: #c7ffce;
+    --sx-light-grey: #f8f8f8;
+    --sx-dark-grey: #3c3c3c;
+    --sx-light-blue: #002d75;
+    --sx-dark-blue: #4285f4;
+    --sx-light-red: #ffc7c7;
+    --sx-black: #1c1c1c;
+    --sx-dark-red: #ff5722;
+    /* Fonts */
+    --sx-font: 'Arial';
+}
+
+td {
+    padding: 0 !important;
+    min-width: min-content !important
+}
+
+.pi1 {
+    padding-inline: 1rem !important;
+}
+
+.pb1 {
+    padding-block: 1rem !important;
+}
+
+.ui.input>input[type=number] {
+    border: 2px solid transparent;
+    background: transparent;
+}
+
+.sx_hidden {
+    display: none;
+}
+
+input[type="number"]:focus {
+    border: 2px solid red !important;
+}
+
+input[type="number"] {
+    min-width: max-content !important;
+}
+
+#sx_float {
+    position: fixed;
+    width: 4em;
+    height: 4em;
+    bottom: 3em;
+    right: 5em;
+    background-color: var(--sx-color);
+    color: var(--sx-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 20;
+    filter:grayscale(1)
+}
+
+#sx_float:hover {
+   filter:grayscale(0)
+}
+
+#sx_float>img {
+    top: auto;
+    left: auto;
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+input[type="number"] {
+    min-width: max-content !important;
+    background: transparent;
+}
+
+#sx_model {
+    height: max-content;
+    zoom: var(--zoom)
+}
+
+.chatbox {
+    --zoom: 100%;
+}
+
+.saralbox {
+    --zoom: 150%;
+}
+
+.content .content.segment {
+    max-height: 100% !important;
+    height: 60vh;
+}
+
+.header>img {
+    font-size: 7rem;
+    margin: 0 !important;
+}
+
+.ui.top.flyout {
+    z-index: 1100 !important;
+}
