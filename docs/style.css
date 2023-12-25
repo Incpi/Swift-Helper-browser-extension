@@ -8,6 +8,10 @@ pre {
     text-wrap: pretty
 }
 
+.ui.fluid.menu>.item {
+    font-size: 1.3em;
+}
+
 @media screen and (max-width: 800px) {
     .tab img {
         margin: 1em 0em;
