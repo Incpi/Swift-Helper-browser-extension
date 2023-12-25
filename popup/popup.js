@@ -40,7 +40,7 @@ function sxinfonode(config) {
     //     document.querySelectorAll('#sx_lang>*').forEach(e => e.classList.toggle('active'))
     //     localStorage.setItem('sxlang', document.querySelector('#sx_lang>.active').getAttribute('data') === "true")
     // })
-    
+    /*
 function sxsetting(config) {
     st = [{ label: "Zoom of SWIFT CHAT (in %)", min: 80, max: 120, id: "setchatzoom" }]//{label: "Zoom of saralgujarat (in %)", min: 80, max: 120, id: "setsaralzoom" }
     st.forEach(e => {
@@ -55,7 +55,7 @@ function sxsetting(config) {
             });
         })
     })
-}
+}*/
 function checkUpdate() {
     document.querySelectorAll(".version").forEach(e => e.innerHTML += chrome.runtime.getManifest().version);
 }
@@ -70,7 +70,7 @@ async function main() {
     }
     checkUpdate();
     sxinfonode(config);
-    sxsetting(config);
+    // sxsetting(config);
 }
 
 main().catch(e => console.error(e))

@@ -1,6 +1,6 @@
 :root {
     /* colors */
-    --sx-color: #002d75;
+    --sx-color: #386af6;
     --sx-white: #fff;
     --sx-dark-green: #008000;
     --sx-light-green: #c7ffce;
@@ -51,18 +51,18 @@ input[type="number"] {
     height: 4em;
     bottom: 3em;
     right: 5em;
-    background-color: var(--sx-color);
+    background-color: black;
     color: var(--sx-white);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border-radius: 1.5rem;
     z-index: 20;
-    filter:grayscale(1)
+    filter: grayscale(1)
 }
 
 #sx_float:hover {
-   filter:grayscale(0)
+    filter: grayscale(0)
 }
 
 #sx_float>img {

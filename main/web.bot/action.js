@@ -79,7 +79,7 @@ function web_export(x = 0) {
     }
     console.log("exporting ", filename)
     tablecsv = tablecsv.replace("'", "")
-    if (x === 0) {
+    if (x === 0 && tablecsv != "") {
         // csv downlaod
         const blob = new Blob([tablecsv],
             { type: 'text/csv' });

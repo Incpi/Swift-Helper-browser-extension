@@ -1,6 +1,6 @@
 :root {
     /* colors */
-    --sx-color: #04254b;
+    --sx-color: #386af6;
     --sx-white: #fff;
     --sx-dark-green: #008000;
     --sx-light-green: #c7ffce;
@@ -30,6 +30,7 @@ body {
 
 .ui.menu {
     overflow: hidden !important;
+    color:var(--sx-light-grey)
 }
 
 /* margin class 0 */
