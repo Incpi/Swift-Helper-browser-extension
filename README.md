@@ -20,13 +20,14 @@ Mark entry from csv/Txt file ans get saved.
 ## ChangeLog:
 ## 2.1.0 
 - [Improvement] more Bugfix.[ popup page, notice on no data, etc. ]
-- new site tutorial: Read More here ![Swift-Helper-browser-extension](https://incpi.github.io/Swift-Helper-browser-extension/)
+- new site tutorial: Read More here [Swift-Helper-browser-extension](https://incpi.github.io/Swift-Helper-browser-extension/)
 
 ## 2.0.0
 - [Improvement] Popup Bugfix.
 - [Feature] UI Changes.
+- Design IS flexible control then ever.
 
-### redesign everything. more flexible control then ever.
+---
 
 ## 1.0.2
 - added export/imports features
