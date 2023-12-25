@@ -1,28 +1,28 @@
 function sxinfonode(config) {
     var div = `<div class="ui horizontal divider header">Links</div>
         <div class="ui fluid buttons">
-            <a class="ui button" target="_blank" href="${config.sglink}"> SARALGUJARAT</a>
-            <a class="ui button" target="_blank" href="${config.sclink}"> SWIFTCHAT LITE</a>
-            <a class="ui button" target="_blank" href="${config.help}">HELP: Website</a>
+            <a class="ui black basic button" target="_blank" href="${config.sglink}"> SARALGUJARAT</a>
+            <a class="ui black basic button" target="_blank" href="${config.sclink}"> SWIFTCHAT LITE</a>
+            <a class="ui black basic button" target="_blank" href="${config.help}">HELP</a>
         </div>
         <p class="ui horizontal divider header">About</p>
         <div class="ui relaxed divided list">
             <div class="item">
                 <div class="content">
                     <span class="header">This plugin is developed by
-                    <a href="${config.linkedin}" target="_blank" class="tertiary ui button"><i class="linkedin icon"></i>linkedin (${config.author})</a></span>
+                    <a href="${config.linkedin}" target="_blank" class="tertiary ui blue button"><i class="linkedin icon"></i>linkedin (${config.author})</a></span>
                 </div>
             </div>
             <div class="item">
                 <div class="content">
                     <span class="header">Feel free to contribute on our
-                    <a href="${config.github}" target="_blank" class="tertiary ui button"><i class="github icon"></i>Github</a></span>
+                    <a href="${config.github}" target="_blank" class="tertiary ui purple button"><i class="github icon"></i>Github</a></span>
                 </div>
             </div>
             <div class="item">
                 <div class="content">
                     <span class="header">License: *we are not responsible for the content of external links
-                    <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" class="tertiary ui button"><i class="award icon"></i>GNU GPL v3</a></span>
+                    <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank" class="tertiary ui orange button"><i class="award icon"></i>GNU GPL v3</a></span>
                 </div>
             </div>
         </div>

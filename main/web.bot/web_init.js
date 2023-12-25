@@ -212,7 +212,7 @@ function loading_data(token) {
         Nodiv.innerHTML = `
             <div class="ui segment fluid">
             No data is available. Please select exam in Xamta-bot. <br/> Please goto help section below for more information,</div>
-            <a class="fluid ui secondary button" href="https://incpi.github.io">Go to Help Site</a> `
+            <a class="fluid ui secondary button" target="_blank" href="https://incpi.github.io">Go to Help Site</a> `
         container.appendChild(Nodiv)
     } else {
         const lists = { "schoolCode": "School Code :", "userMobile": "Teacher's Mobile :", "teacherCode": "Teacher's Code :", "teacherName": "Teacher's Name :" }

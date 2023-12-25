@@ -1,5 +1,5 @@
 {
-  "page_action": {
+  "action": {
     "default_icon": {
       "16": "docs/images/icons/icon16.png",
       "32": "docs/images/icons/icon32.png",
@@ -7,8 +7,10 @@
       "128": "docs/images/icons/icon128.png"
     },
     "default_popup": "popup/popup.html",
-    "default_title": "SaralXamata Helper",
-    "show_matches": ["https://*.convegenius.ai/*"]
+    "default_title": "Swift Helper",
+    "show_matches": [
+      "https://*.convegenius.ai/*"
+    ]
   },
   "applications": {
     "gecko": {
@@ -17,12 +19,15 @@
   },
   "author": "Omkar Patel",
   "background": {
-    "scripts": ["/background/background.js", "/background/hot-reload.js"],
-    "persistent": true
+    "service_worker": "/background/background.js",
+    "type": "module"
   },
   "content_scripts": [
     {
-      "css": ["/main/style.css", "/lib/semanticui/semantic.min.css"],
+      "css": [
+        "/main/style.css",
+        "/lib/semanticui/semantic.min.css"
+      ],
       "js": [
         "/lib/jQuery/jquery.min.js",
         "/lib/semanticui/semantic.min.js",
@@ -32,7 +37,9 @@
         "main/web.bot/action.js",
         "/main/init.js"
       ],
-      "matches": ["*://*.convegenius.ai/*"]
+      "matches": [
+        "*://*.convegenius.ai/*"
+      ]
     }
   ],
   "description": "This extension will help to insert marks on bot like xamta and saralgujarat from CSV -for Teachers.",
@@ -43,7 +50,7 @@
     "48": "docs/images/icons/icon48.png",
     "128": "docs/images/icons/icon128.png"
   },
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Swift-Helper-Extension Helper",
   "permissions": [
     "declarativeContent",
@@ -53,5 +60,15 @@
   ],
   "short_name": "SX Helper",
   "version": "2.1.0",
-  "web_accessible_resources": ["/docs/images/*", "lib/*"]
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "/docs/images/*",
+        "lib/*"
+      ],
+      "matches": [
+        "*://*.convegenius.ai/*"
+      ]
+    }
+  ]
 }
