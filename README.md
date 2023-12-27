@@ -17,6 +17,15 @@ I guarantee:
 ### Features
 Mark entry from csv/Txt file ans get saved.
 
+## Installation 
+Install in Developer Mode from Sources
+Google Chrome
+If you know what you are doing, you can install the plugin directly from sources. Clone the repo and add the folder directly to Google Chrome
+
+Download or clone the repo from github. Unpack if necessary.
+In Google Chrome, Navigate to Settings – > Extensions
+Enable Developer Mode (slider on the top-right)
+Click: "Load Unpacked Extension" and select the folder with the plugin data
 ## ChangeLog:
 ## 2.1.0 
 - [Improvement] more Bugfix.[ popup page, notice on no data, etc. ]
@@ -34,7 +43,7 @@ Mark entry from csv/Txt file ans get saved.
 ## 1.0.1
 - first public version for this plugin.
 
-## How to Use it 
+## Usages 
 - Refer help section in Extension Popup. (use site will be updated later)
 Swift chat lite:
 https://web.convegenius.ai/
@@ -57,10 +66,10 @@ if it detects:
 
 
 
-# Contributing
+## Contributing
 
 - I am looking forward to collaborating with the community on this project and I appreciate any contributions and feedback. 
-Before making any significant changes, please create an issue to discuss your proposal and rationale. 
+Before making any significant changes, please create an issue to discuss yr proposal and rationale. 
 This is my first attempt at an Open Source project, so I welcome any suggestions on how to improve the code quality, architecture and project management.
 
 **Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
