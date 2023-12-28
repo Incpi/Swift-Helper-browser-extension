@@ -1,4 +1,4 @@
-# [Swift Helper browser extension](https://incpi.github.io/Swift-Helper-browser-extension/)
+## [Swift Helper browser extension](https://incpi.github.io/Swift-Helper-browser-extension/)
 
 This Browser Plugin automate the mark entry for teachers with some useful features.
 ---
