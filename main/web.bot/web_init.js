@@ -46,7 +46,7 @@ function examdetails(data) {
         payload = JSON.parse(i)
         var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/\s+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`
         subtab = document.querySelector(`div.tab.segment[data-tab="${id}"]`)
-        subtab.innerHTML = `<span>
+        subtab.innerHTML = `<div><span>
             <a class="ui black basic label" data="${payload.examID}">Subject :<div class="detail">${payload.subject.split(":")[0]}</div></a>
             <a class="ui black basic label">Date :<div class="detail">${payload.subject.split(":")[1]}</div></a>
             <a class="ui black basic label">Grade :<div class="detail">${payload.grade}-${payload.section}</div></a>
@@ -57,7 +57,7 @@ function examdetails(data) {
             <a class="ui red basic tertiary label">Absent<div class="detail">Saved</div></a>
             <a class="ui green basic tertiary label">Present<div class="detail">Saved</div></a>
             <a class="ui  tertiary basic label">Not Saved</a>
-        </span>
+        </span></div>
         <div class="ui segment scrolling content"><table class="ui sortable compact celled table" id="${id}_table"></table></div>`
     }
 }
@@ -92,7 +92,7 @@ function fetch_table(id, exam, student) {
                     <td class="pi1 enter fluid left marked">
                     <div class="ui fitted slider checkbox"><input type="checkbox"><label></label></div></td>`
         for (i = 0; i < exam.length; i++) {
-            tablegen += `<td><div class="ui fluid input"><input max="${find_obj_value(exam, 'questionTitle', `Q${i + 1}`, 'questionMaxScore')}" placeholder="${find_obj_value(exam, 'questionTitle', `Q${i + 1}`, 'questionTitle')}" min="0" type="number"></div></td>`
+            tablegen += `<td><div class="ui fluid input"><input max="${find_obj_value(exam, 'questionTitle', exam[i].questionTitle, 'questionMaxScore')}" placeholder="${exam[i].questionTitle}" min="0" type="number"></div></td>`
         }
         tablegen += `<td class="pi1 enter fluid">${student[st].scores ? (student[st].scores.status === 1 ? student[st].scores.obtainedMarks : 0) : 0}</td>
             <td><div class="ui fluid ${student[st].scores ? ((student[st].scores.status === 1) ? "green disabled" : "disabled") : ""} animated fade button" tabindex="0">
@@ -109,7 +109,7 @@ function load_marks_online(id, exam, student) {
                 $(`#${id} tr[sid=${student[st].studentId}] input[type="checkbox"]`).prop('checked', true);
                 examdata = sort(student[st].scores.questions, "questionID")
                 for (i = 0; i < examdata.length; i++) {
-                    document.querySelectorAll(`#${id} tr[sid="${student[st].studentId}"] input[type="number"]`)[i].value = find_obj_value(examdata, 'questionTitle', `Q${i + 1}`, 'score')
+                    document.querySelectorAll(`#${id} tr[sid="${student[st].studentId}"] input[type="number"]`)[i].value = find_obj_value(examdata, 'questionTitle', document.querySelectorAll(`#${id} thead > tr > th`)[i + 4].innerText, 'score')
                 }
             } else {//a
                 $(`#${id} tr[sid=${student[st].studentId}]`).addClass("red");
@@ -170,35 +170,19 @@ function makebody(trdata, exam, student) {
         })
     })
     x.questions.forEach(e => sum += parseInt(e.score))
-    present = trdata.querySelector("input[type='checkbox']").checked ? 1 : 2
-    body = `
-    {
-        "data": {
-            "studentID": "${suid}",
-            "examID": "${payload.examID}",
-            "schoolCode": "${payload.schoolCode}",
-            "section": "${payload.section}",
-            "userMobile": "${payload.userMobile}",
-            "teacherCode": "${payload.teacherCode}",
-            "teacherName": "${payload.teacherName}",
-            "userMedium": "${payload.userMedium}",
-            "grade": "${payload.grade}",`
-    if (present === 1) {
-        body += `
-            "scores": { "status": ${parseInt(present)},
-                "totalMarks": ${parseInt(maxsum)},
-                "obtainedMarks": ${parseInt(sum)},
-                "questions":${JSON.stringify(x.questions)}
-            }}}`
-    } else {
-        alert('Please Save manually -- Not Supported Yet!!')
-    }
-    body = body.replaceAll(/[\n\r]+/g, "");
-    console.log(sleep(250).then(() => {
-        x = posthttp(`https://saral-bot.convegenius.live/api/save-student-scores?token=${token}`, body)
-    }
-    ));
+    sleep(250).then(() => {
+        present = trdata.querySelector("input[type='checkbox']").checked ? 1 : 2
+        body = `{"data": {"studentID": "${suid}","examID": "${payload.examID}","schoolCode": "${payload.schoolCode}","section": "${payload.section}","userMobile": "${payload.userMobile}","teacherCode": "${payload.teacherCode}","teacherName": "${payload.teacherName}","userMedium": "${payload.userMedium}","grade": "${payload.grade}",`
+        if (present === 1) {
+            body += `"scores": { "status": ${parseInt(present)},"totalMarks": ${parseInt(maxsum)},"obtainedMarks": ${parseInt(sum)},"questions":${JSON.stringify(x.questions)}}}}`
+        } else {
+            body += `"scores": { "status": ${parseInt(present)}}}}`
+        }
+        body = body.replaceAll(/[\n\r]+/g, "");
+        posthttp(`https://saral-bot.gujaratvsk.org/api/save-student-scores?token=${token}`, body)
+    });
 }
+
 function sort(data, key) {
     return data.sort((a, b) => parseInt(a[key]) - parseInt(b[key]))
 }
@@ -225,8 +209,8 @@ function loading_data(token) {
         for (i of lastdata) {
             const payload = JSON.parse(i)
             var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/\s+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`
-            let exam = JSON.parse(httpGet(`https://saral-bot.convegenius.live/api/get-exam-details?token=${token}&examID=${payload.examID}`))
-            var student = JSON.parse(httpGet(`https://saral-bot.convegenius.live/api/get-student-list?token=${token}&schoolCode=${payload.schoolCode}&grade=${payload.grade}&section=${payload.section}&examID=${payload.examID}`))
+            let exam = JSON.parse(httpGet(`https://saral-bot.gujaratvsk.org/api/get-exam-details?token=${token}&examID=${payload.examID}`))
+            var student = JSON.parse(httpGet(`https://saral-bot.gujaratvsk.org/api/get-student-list?token=${token}&schoolCode=${payload.schoolCode}&grade=${payload.grade}&section=${payload.section}&examID=${payload.examID}`))
             fetch_table(`${id}_table`, exam, student)
             tablelisten(`${id}_table`, exam, student)
             load_marks_online(`${id}_table`, exam, student)
