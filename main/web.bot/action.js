@@ -122,13 +122,18 @@ function web_save(id = '#progressbar') {
     myLoop();
 }
 
-function errortoast(i) {
+function errortoast(title, i, timeout) {
     $.toast({
-        title: student[i].studentName,
-        message: student[i].studentId + " Error",
-        displayTime: 0,
-        closeIcon: true,
-        class: "red"
+        title: title,
+        message: `${i} Error`,
+        showProgress: 'bottom',
+        classProgress: 'black',
+        showIcon: true,
+        class: 'red',
+        displayTime: timeout,
+        transition: {
+            closeEasing: 'easeOutBounce'
+        }
     })
 }
 function sucesstoast(title, i, timeout) {
@@ -141,7 +146,8 @@ function sucesstoast(title, i, timeout) {
             showMethod: 'zoom',
             showDuration: timeout,
             hideMethod: 'fade',
-            hideDuration: timeout / 2
+            hideDuration: timeout / 2,
+            closeEasing: 'easeOutBounce'
         }
     })
 }

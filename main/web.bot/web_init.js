@@ -58,7 +58,7 @@ function examdetails(data) {
             <a class="ui green basic tertiary label">Present<div class="detail">Saved</div></a>
             <a class="ui  tertiary basic label">Not Saved</a>
         </span></div>
-        <div class="ui fluid container"><table class="ui celled table" id="${id}_table"></table></div>`
+        <div class="ui fluid segment" style="overflow: scroll;text-wrap: nowrap;padding:0"><table class="ui sortable compact last stuck celled table" id="${id}_table"></table></div>`
     }
 }
 function fetchmenu(listdata) {
@@ -95,8 +95,8 @@ function fetch_table(id, exam, student) {
             tablegen += `<td><div class="ui fluid input"><input max="${find_obj_value(exam, 'questionTitle', exam[i].questionTitle, 'questionMaxScore')}" placeholder="${exam[i].questionTitle}" min="0" type="number"></div></td>`
         }
         tablegen += `<td class="pi1 enter fluid">${student[st].scores ? (student[st].scores.status === 1 ? student[st].scores.obtainedMarks : 0) : 0}</td>
-            <td><div class="ui fluid ${student[st].scores ? ((student[st].scores.status === 1) ? "green disabled" : "disabled") : ""} animated fade button" tabindex="0">
-            <div class="visible content">Done?</i></div><div class="hidden content">Save</div></div></td></tr>`
+            <td><div class="ui icon fluid ${student[st].scores ? ((student[st].scores.status === 1) ? "green disabled" : "disabled") : ""} animated fade button" tabindex="0">
+            <div class="visible content">Done</div><div class="hidden content">Save</div></div></td></tr>`
     }
     tablegen += "</tbody>"
     document.querySelector(`#${id}`).innerHTML = tablegen
@@ -140,23 +140,26 @@ function tablelisten(id, exam, student) {
         });
         e.querySelector(`.button`).addEventListener('click', () => {
             btn = e.querySelector(`.button`);
-            body = makebody(e, exam, student)
-            sucesstoast(e.children[1].innerText, e.children[2].innerText + " saved", 2000);
-            xhrst = true
-            if (xhrst) {
-                console.log(btn, e)
-                btn.classList.add('green')
-                e.classList.contains('blue') || e.classList.contains('red') ? e.classList.remove('blue', 'red') : ""
-                e.classList.add('green')
-                btn.classList.contains('disabled') ? "" : btn.classList.add(`disabled`)
-            } else {
+            body = makebody(e, exam)
+            if (body != null || body != undefined) {
+                if (body.includes("Successfully Saved")) {
+                    console.log(btn, e)
+                    btn.classList.add('green')
+                    e.classList.contains('blue') || e.classList.contains('red') ? e.classList.remove('blue', 'red') : ""
+                    e.classList.add('green')
+                    btn.classList.contains('disabled') ? "" : btn.classList.add(`disabled`)
+                    sucesstoast(e.children[1].innerText, e.children[2].innerText + " saved", 2000);
+                }
+            }
+            else {
                 btn.classList.contains('red') ? "" : btn.classList.add(`red`)
+                errortoast(e.children[1].innerText, e.children[2].innerText, 6000);
             }
             // document.querySelector(`tr[sid="${e.getAttribute('sid')}"] .animated`).classList.remove('disabled', 'green')
         })
     })
 }
-function makebody(trdata, exam, student) {
+function makebody(trdata, exam) {
     suid = trdata.getAttribute('sid')
     arr = []
     maxsum = 0;
@@ -179,7 +182,7 @@ function makebody(trdata, exam, student) {
             body += `"scores": { "status": ${parseInt(present)}}}}`
         }
         body = body.replaceAll(/[\n\r]+/g, "");
-        posthttp(`https://saral-bot.gujaratvsk.org/api/save-student-scores?token=${token}`, body)
+        return JSON.stringify(posthttp(`https://saral-bot.gujaratvsk.org/api/save-student-scores?token=${token}`, body))
     });
 }
 

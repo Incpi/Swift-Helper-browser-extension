@@ -42,7 +42,7 @@
       ]
     }
   ],
-  "description": "This extension will help to insert marks on bot like xamta and saralgujarat from CSV -for Teachers.",
+  "description": "This extension will help to Automate mark data entry on bot like xamta and saralgujarat for Teachers.",
   "homepage_url": "https://incpi.github.io",
   "icons": {
     "16": "docs/images/icons/icon16.png",
@@ -59,7 +59,7 @@
     "*://*.convegenius.ai/*"
   ],
   "short_name": "SX Helper",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "web_accessible_resources": [
     {
       "resources": [
