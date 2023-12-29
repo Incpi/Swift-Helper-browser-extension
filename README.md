@@ -2,8 +2,7 @@
 
 This Browser Plugin automate the mark entry for teachers with some useful features.
 ---
-Are you a teacher who uses Saral Gujarat and swift Chat app for Xamta bot?
-If yes, then you will be amazed by this tool. It can do the mark entry process for you automatically, saving you time and effort. It is easy, quick and trustworthy.
+This is a browser extension for Swift Chat, a popular messaging app with over 250,000 users. It allows you to access the Web Bot Xamta service, which can help you automate tasks. With this extension, you can easily import and export data from different sources, eliminating the need for manual work.
 
 ## Privacy and Data Protection
 The plugin does not collect personal data. Nevertheless the stores like Chrome Web Store collect some anonymous data like how many users have the plugin installed.
@@ -27,7 +26,11 @@ In Google Chrome, Navigate to Settings – > Extensions
 Enable Developer Mode (slider on the top-right)
 Click: "Load Unpacked Extension" and select the folder with the plugin data
 ## ChangeLog:
-## 2.1.2
+## 2.1.5
+- Import feature has been added
+- Bug Fixes [Error handling imporved]
+  
+## 2.1.0
 - [Improvement] more Bugfix.[ popup page, notice on no data, etc. ]
 - new site tutorial: Read More here [Swift-Helper-browser-extension](https://incpi.github.io/Swift-Helper-browser-extension/)
 - Patchs:
