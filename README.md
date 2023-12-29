@@ -27,9 +27,11 @@ In Google Chrome, Navigate to Settings – > Extensions
 Enable Developer Mode (slider on the top-right)
 Click: "Load Unpacked Extension" and select the folder with the plugin data
 ## ChangeLog:
-## 2.1.0 
+## 2.1.2
 - [Improvement] more Bugfix.[ popup page, notice on no data, etc. ]
 - new site tutorial: Read More here [Swift-Helper-browser-extension](https://incpi.github.io/Swift-Helper-browser-extension/)
+- Patchs:
+  -  New fixes + error handling + API Updated 
 
 ## 2.0.0
 - [Improvement] Popup Bugfix.
@@ -45,6 +47,9 @@ Click: "Load Unpacked Extension" and select the folder with the plugin data
 
 ## Usages 
 - Refer help section in Extension Popup. (use site will be updated later)
+
+- ***P/A Means Present or absent students status.***
+
 Swift chat lite:
 https://web.convegenius.ai/
 for mark entry with Xamta chat bot
@@ -58,13 +63,15 @@ for mark entry with Xamta chat bot
  7. preview:
    ![image](https://github.com/incpi/Swift-Helper-browser-extension/assets/87596092/486cdfc4-6e93-4567-96c3-d8fd9670cafd)
 
-if no exam selected in xamta chatbot
-![image](https://github.com/incpi/Swift-Helper-browser-extension/assets/87596092/fe69e09e-4391-41a3-ae68-376d94e4f9a0)
-
-if it detects:
-![image](https://github.com/incpi/Swift-Helper-browser-extension/assets/87596092/0de103d0-86ec-4570-b2f2-88c572ebc861)
-
-
+   - if no exam selected in xamta chatbot
+    ![image](https://github.com/incpi/Swift-Helper-browser-extension/assets/87596092/fe69e09e-4391-41a3-ae68-376d94e4f9a0)
+    
+   - if it detects:
+    ![image](https://github.com/incpi/Swift-Helper-browser-extension/assets/87596092/0de103d0-86ec-4570-b2f2-88c572ebc861)
+    
+   - if error happens:
+    ![image](https://github.com/incpi/Swift-Helper-browser-extension/assets/87596092/487d874f-b05e-4056-bc93-ce193488d18c)
+    You can retry manully or after sometime.
 
 ## Contributing
 
