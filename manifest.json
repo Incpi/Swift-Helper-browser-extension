@@ -59,7 +59,7 @@
     "*://*.convegenius.ai/*"
   ],
   "short_name": "SX Helper",
-  "version": "2.1.2",
+  "version": "2.1.5",
   "web_accessible_resources": [
     {
       "resources": [

@@ -2,7 +2,7 @@ function web_import() {
     filename = []
     document.querySelectorAll('#sx_model div.ui.tab.segment.active span:nth-child(1) .detail').forEach(e => filename.push(e.innerText))
     getdata = localStorage.activeimport
-    if (getdata) { file_input(localStorage.activeimport) }
+    if (getdata) { file_input(localStorage.activeimport); sucesstoast("Imported", "Suceessful", 3000) }
     else { errortoast("Select file", "No data found", 3000) }
 }
 
@@ -82,6 +82,7 @@ function web_export(x = 0) {    // Getting values of current time for generating
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
     }
+    sucesstoast("Exported", "SuccessFul", 3000)
     return tablecsv
 }
 

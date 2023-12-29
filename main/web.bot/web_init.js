@@ -34,7 +34,7 @@ function GetTeacherData(lastmsglist, teacherDetails) {
         }
     }
     segement += `
-    <div class="ui file input action"><input accept=".csv,.txt" id="activeimport" type="file"><label for="activeimport"  data-tooltip="Add users to your feed" data-position="top center" class="ui blue button">File</label></div>
+    <div class="ui file input action"><input accept=".csv,.txt" id="activeimport" type="file"><label for="activeimport"  data-tooltip="Add users to your feed" data-position="top center" class="ui blue button">File for active Exam</label></div>
     <a class="ui right item image label"><img class='ui rounded centered image' src="${get_bot_static.configuration.photo}"> ${get_bot_static.configuration.name} <span class="ui basic ${get_bot_static.configuration.status === "ACTIVE" ? "green" : "red"} basic label"> ${get_bot_static.subscriber_count} </span></a></div >`
     div.innerHTML += segement
     return div
