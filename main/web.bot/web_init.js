@@ -33,10 +33,8 @@ function GetTeacherData(lastmsglist, teacherDetails) {
             segement += `<a class="ui active item large basic label">${teacherDetails[i]}<div class="detail">${lastmsglist[i]}</div> </a>`
         }
     }
-    segement += `<dialog id="activeimport">
-    <button class="ui deny button" autofocus>Close</button> <button class="ui green button">Selected</button>
-    <div class="ui file action input"><input accept=".csv,.txt" id="activeimport1" type="file"><label for="activeimport1" class="ui blue button">Choose FILE</label></div>
-    </dialog>
+    segement += `
+    <div class="ui file input action"><input accept=".csv,.txt" id="activeimport" type="file"><label for="activeimport"  data-tooltip="Add users to your feed" data-position="top center" class="ui blue button">File</label></div>
     <a class="ui right item image label"><img class='ui rounded centered image' src="${get_bot_static.configuration.photo}"> ${get_bot_static.configuration.name} <span class="ui basic ${get_bot_static.configuration.status === "ACTIVE" ? "green" : "red"} basic label"> ${get_bot_static.subscriber_count} </span></a></div >`
     div.innerHTML += segement
     return div
@@ -138,25 +136,7 @@ function tablelisten(id, exam, student) {
             x.checked ? x.parentNode.parentNode.classList.replace('red', "green") : x.parentNode.parentNode.classList.replace("green", 'red')
             x.checked ? inputs.forEach(i => i.parentNode.classList.remove('disabled')) : inputs.forEach(i => i.parentNode.classList.add('disabled'));
         });
-        e.querySelector(`.button`).addEventListener('click', () => {
-            btn = e.querySelector(`.button`);
-            body = makebody(e, exam)
-            if (body != null || body != undefined) {
-                if (body.includes("Successfully Saved")) {
-                    console.log(btn, e)
-                    btn.classList.add('green')
-                    e.classList.contains('blue') || e.classList.contains('red') ? e.classList.remove('blue', 'red') : ""
-                    e.classList.add('green')
-                    btn.classList.contains('disabled') ? "" : btn.classList.add(`disabled`)
-                    sucesstoast(e.children[1].innerText, e.children[2].innerText + " saved", 2000);
-                }
-            }
-            else {
-                btn.classList.contains('red') ? "" : btn.classList.add(`red`)
-                errortoast(e.children[1].innerText, e.children[2].innerText, 6000);
-            }
-            // document.querySelector(`tr[sid="${e.getAttribute('sid')}"] .animated`).classList.remove('disabled', 'green')
-        })
+        e.querySelector(`.button`).addEventListener('click', () => { makebody(e, exam) })
     })
 }
 function makebody(trdata, exam) {
@@ -182,7 +162,7 @@ function makebody(trdata, exam) {
             body += `"scores": { "status": ${parseInt(present)}}}}`
         }
         body = body.replaceAll(/[\n\r]+/g, "");
-        return JSON.stringify(posthttp(`https://saral-bot.gujaratvsk.org/api/save-student-scores?token=${token}`, body))
+        return posthttp(`https://saral-bot.gujaratvsk.org/api/save-student-scores?token=${token}`, body, [], trdata)
     });
 }
 
@@ -205,7 +185,7 @@ function loading_data(token) {
         const lists = { "schoolCode": "School Code :", "userMobile": "Teacher's Mobile :", "teacherCode": "Teacher's Code :", "teacherName": "Teacher's Name :" }
         //teacher data
         container.appendChild(GetTeacherData(JSON.parse(lastdata[0]), lists))
-        document.querySelector(`#activeimport input`).addEventListener('input', () => outputFileContents('activeimport'))
+        document.querySelector(`#activeimport`).addEventListener('input', () => outputFileContents('activeimport'))
         //GET exam MENU
         fetchmenu(lastdata)
         examdetails(lastdata)

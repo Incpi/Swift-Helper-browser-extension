@@ -37,7 +37,7 @@ function start() {
         $('#sx_model').modal({
             closable: false,
             actions: [
-                // { text: 'Import', class: 'blue disabled', click: () => { init_import(host); return false } },
+                { text: 'Import', class: 'blue', click: () => { init_import(host); return false } },
                 { text: 'Export', class: 'blue', click: () => { init_export(host); return false } },
                 { text: 'Refresh', class: 'green', click: () => { refresh(host); return false } },
                 { text: 'Save All', icon: 'exclamation', class: 'red', click: () => { init_save(host); return false } },
