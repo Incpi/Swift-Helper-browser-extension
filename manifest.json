@@ -35,9 +35,9 @@
         "/lib/semanticui/tablesort.js",
         "/lib/common/tool.js",
         "/lib/common/logging.js",
+        "/Whatsnew/whatsnew.js",
         "/main/web.bot/web_init.js",
         "/main/web.bot/action.js",
-        "/Whatsnew/whatsnew.js",
         "/main/init.js"
       ],
       "matches": [
@@ -58,10 +58,11 @@
   "permissions": [
     "declarativeContent",
     "storage",
-    "webRequest"
+    "webRequest",
+    "*://*.convegenius.ai/*"
   ],
-  "short_name": "SX Helper",
-  "version": "2.1.5",
+  "short_name": "SWiftHelper",
+  "version": "3.0.0",
   "web_accessible_resources": [
     {
       "resources": [

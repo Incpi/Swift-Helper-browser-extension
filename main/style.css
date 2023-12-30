@@ -103,3 +103,8 @@ input[type="number"] {
 .ui.top.flyout {
     z-index: 1100 !important;
 }
+
+/* whats new */
+#WN_V a {
+    text-decoration: none;
+}

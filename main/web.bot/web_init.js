@@ -56,7 +56,8 @@ function examdetails(data) {
             <a class="ui green basic tertiary label">Present<div class="detail">Saved</div></a>
             <a class="ui  tertiary basic label">Not Saved</a>
         </span></div>
-        <div class="ui fluid segment" style="overflow: scroll;text-wrap: nowrap;padding:0"><table class="ui sortable compact last stuck celled table" id="${id}_table"></table></div>`
+        <div class="ui fluid fitted segment" style="text-wrap: nowrap;overflow: hidden;">
+        <table class="ui sortable compact last stuck celled table" id="${id}_table"></table></div>`
     }
 }
 function fetchmenu(listdata) {

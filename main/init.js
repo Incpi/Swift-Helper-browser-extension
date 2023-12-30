@@ -2,8 +2,11 @@ function sidebar() {
     model = document.createElement("div")
     model.id = "sx_model"
     model.classList = `ui modal overlay fullscreen ${document.location.host.includes('saral') ? "saralbox" : "chatbox"}`
-    model.innerHTML = `<div class="ui header"> <img class='ui centered image' src=${chrome.runtime.getURL("docs/images/logobig.png")}></img></div><div class="content"></div>`;
+    model.innerHTML = `<div class="ui header"> <img class='ui centered image' src=${chrome.runtime.getURL("docs/images/logobig.png")}></img>
+    <div style="float: right;font-size: 1.3rem;" class="ui orange large basic button">What's New ?</div>
+    </div><div class="content"></div>`;
     document.querySelector('body').appendChild(model)
+    document.querySelector('#sx_model .header .orange.button').addEventListener('click', () => whatsNewCheck(false))
 }
 
 function init_export(host) {
@@ -47,7 +50,5 @@ function start() {
         configuration()
     });
 }
-whatsNewCheck(false)
 start()
-
-
+whatsNewCheck()
