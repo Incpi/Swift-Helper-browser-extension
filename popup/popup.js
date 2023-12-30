@@ -51,7 +51,7 @@ function sxsetting(config) {
         });
         document.getElementById(e.id).addEventListener('change', () => {
             chrome.storage.sync.set(JSON.parse(`{"${e.id}":"${document.getElementById(e.id).value}"}`), function () {
-                console.log('Value is set to' + e.id + ":" + document.getElementById(e.id).value)
+                log.log('Value is set to' + e.id + ":" + document.getElementById(e.id).value)
             });
         })
     })

@@ -2,8 +2,8 @@ function web_import() {
     filename = []
     document.querySelectorAll('#sx_model div.ui.tab.segment.active span:nth-child(1) .detail').forEach(e => filename.push(e.innerText))
     getdata = localStorage.activeimport
-    if (getdata) { file_input(localStorage.activeimport); sucesstoast("Imported", "Suceessful", 3000) }
-    else { errortoast("Select file", "No data found", 3000) }
+    if (getdata) { file_input(localStorage.activeimport); successToast("Imported", "Suceessful", 3000) }
+    else { errorToast("Select file", "No data found", 3000) }
 }
 
 //pending
@@ -28,7 +28,7 @@ function file_input(varinput) {
             cell.dispatchEvent(new Event('change'))
         }
     }
-    console.log('import is completed')
+    log.log('import is completed')
     return 1
 }
 
@@ -67,7 +67,7 @@ function web_export(x = 0) {    // Getting values of current time for generating
         tablecsv = tablecsv.slice(0, tablecsv.lastIndexOf(','))//, tablecsv.lastIndexOf(',')))
         tablecsv += "\n"
     }
-    console.log("exporting ", filename)
+    log.log("exporting ", filename)
     tablecsv = tablecsv.replace("'", "")
     if (x === 0 && tablecsv != "") {        // csv downlaod
         const blob = new Blob([tablecsv],
@@ -82,14 +82,14 @@ function web_export(x = 0) {    // Getting values of current time for generating
         document.body.removeChild(a);
         window.URL.revokeObjectURL(url);
     }
-    sucesstoast("Exported", "SuccessFul", 3000)
+    successToast("Exported", "SuccessFul", 3000)
     return tablecsv
 }
 
 function web_save(id = '#progressbar') {
     data_btn = document.querySelectorAll('#sx_model div.ui.tab.segment.active tr.blue .button:not(.disabled),#sx_model div.ui.tab.segment.active tr.red .button:not(.disabled)')
     if (data_btn.length === 0) {
-        sucesstoast("NO DATA FOUND", "", 0)
+        successToast("NO DATA FOUND", "", 0)
         return
     }
     function myLoop() {
@@ -105,22 +105,24 @@ function web_save(id = '#progressbar') {
     myLoop();
 }
 
-function successdata(e) {
+function successDataSave(e) {
     btn = e.querySelector(`.button`);
     btn.classList.add('green')
     e.classList.contains('blue') || e.classList.contains('red') ? e.classList.remove('blue', 'red') : ""
     e.classList.add('green')
     btn.classList.contains('disabled') ? "" : btn.classList.add(`disabled`)
-    sucesstoast(e.children[1].innerText, e.children[2].innerText + " saved", 2000);
+    log.log(e.children[1].innerText, e.children[2].innerText + " saved")
+    successToast(e.children[1].innerText, e.children[2].innerText + " saved", 2000);
 }
 
-function errordata(btn, e) {
+function errorDataSave(btn, e, status) {
     btn = e.querySelector(`.button`);
     btn.classList.contains('red') ? "" : btn.classList.add(`red`)
-    errortoast(e.children[1].innerText, e.children[2].innerText, 6000);
+    log.log(e.children[1].innerText + e.children[2].innerText, " Error Occurred" + status)
+    errorToast(e.children[1].innerText + e.children[2].innerText, " Error Occurred" + status, 6000);
 }
 
-function errortoast(title, i, timeout) {
+function errorToast(title, i, timeout) {
     $.toast({
         title: title,
         message: `${i} Error`,
@@ -134,7 +136,7 @@ function errortoast(title, i, timeout) {
         }
     })
 }
-function sucesstoast(title, i, timeout) {
+function successToast(title, i, timeout) {
     $.toast({
         title: title,
         message: i,

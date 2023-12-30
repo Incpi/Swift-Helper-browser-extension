@@ -30,11 +30,14 @@
       ],
       "js": [
         "/lib/jQuery/jquery.min.js",
+        "/lib/ulog/ulog-full.min.js",
         "/lib/semanticui/semantic.min.js",
         "/lib/semanticui/tablesort.js",
         "/lib/common/tool.js",
-        "main/web.bot/web_init.js",
-        "main/web.bot/action.js",
+        "/lib/common/logging.js",
+        "/main/web.bot/web_init.js",
+        "/main/web.bot/action.js",
+        "/Whatsnew/whatsnew.js",
         "/main/init.js"
       ],
       "matches": [
@@ -55,8 +58,7 @@
   "permissions": [
     "declarativeContent",
     "storage",
-    "webRequest",
-    "*://*.convegenius.ai/*"
+    "webRequest"
   ],
   "short_name": "SX Helper",
   "version": "2.1.5",

@@ -8,14 +8,14 @@ function sidebar() {
 
 function init_export(host) {
     // host ? saral_export() : 
-    console.log(web_export())
+    log.log(web_export())
 }
 function init_import(host) {
     // host ? saral_import() : 
     web_import()
 }
 function init_save(host) {
-    console.log("save host")
+    log.log("save host")
     // host ? saral_save() : 
     web_save()
 }
@@ -47,6 +47,7 @@ function start() {
         configuration()
     });
 }
+whatsNewCheck(false)
 start()
 
 
