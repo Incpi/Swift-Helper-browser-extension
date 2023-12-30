@@ -26,11 +26,9 @@ In Google Chrome, Navigate to Settings – > Extensions
 Enable Developer Mode (slider on the top-right)
 Click: "Load Unpacked Extension" and select the folder with the plugin data
 ## ChangeLog:
-## 2.1.5
+## 3.0.0
 - Import feature has been added
 - Bug Fixes [Error handling imporved]
-  
-## 2.1.0
 - [Improvement] more Bugfix.[ popup page, notice on no data, etc. ]
 - new site tutorial: Read More here [Swift-Helper-browser-extension](https://incpi.github.io/Swift-Helper-browser-extension/)
 - Patchs:
