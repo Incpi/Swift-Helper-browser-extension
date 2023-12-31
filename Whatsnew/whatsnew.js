@@ -80,7 +80,6 @@ async function whatsNewCheck(showOnlyOnce = true) {
         textElement.classList = "ui fullscreen modal"
         textElement.id = `WN_V`
         document.body.appendChild(textElement);
-        log.log(document.querySelector(`#WN_V`))
         $(`#WN_V`).modal({
             blurring: true,
             allowMultiple: true,

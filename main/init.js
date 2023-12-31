@@ -39,6 +39,7 @@ function start() {
         sidebar();
         $('#sx_model').modal({
             closable: false,
+            content:`<div class="ui active dimmer"><div class="ui massive text loader">Please Wait, While we fetch Exam Details</div>`,
             actions: [
                 { text: 'Import', class: 'blue', click: () => { init_import(host); return false } },
                 { text: 'Export', class: 'blue', click: () => { init_export(host); return false } },
@@ -47,7 +48,7 @@ function start() {
                 { text: 'Close', class: 'black' }]
         }).modal('show');
         // loading init values
-        configuration()
+        sleep(100).then(() => configuration())
     });
 }
 start()

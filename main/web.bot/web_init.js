@@ -34,7 +34,6 @@ function GetTeacherData(lastmsglist, teacherDetails) {
         }
     }
     segement += `
-    <div class="ui file input action"><input accept=".csv,.txt" id="activeimport" type="file"><label for="activeimport" data-variation="blue"  data-tooltip="Import File for Currently visible Exam table" data-position="top center" class="ui blue button">File for active Exam</label></div>
     <a class="ui right item image label"><img class='ui rounded centered image' src="${get_bot_static.configuration.photo}"> ${get_bot_static.configuration.name} <span class="ui basic ${get_bot_static.configuration.status === "ACTIVE" ? "green" : "red"} basic label"> ${get_bot_static.subscriber_count} </span></a></div >`
     div.innerHTML += segement
     return div
@@ -56,8 +55,8 @@ function examdetails(data) {
             <a class="ui green basic tertiary label">Present<div class="detail">Saved</div></a>
             <a class="ui  tertiary basic label">Not Saved</a>
         </span></div>
-        <div class="ui fluid fitted segment" style="text-wrap: nowrap;overflow: hidden;">
-        <table class="ui sortable compact last stuck celled table" id="${id}_table"></table></div>`
+        <div class="ui fluid fitted segment" style="text-wrap: nowrap;overflow-x: scroll;">
+        <table class="ui last stuck sortable table"  id="${id}_table"></table></div>`
     }
 }
 function fetchmenu(listdata) {
@@ -173,6 +172,7 @@ function sort(data, key) {
 //trigger
 function loading_data(token) {
     const container = document.querySelector('#sx_model .content')
+    container.innerHTML="";
     lastdata = lastbotmsg()
     if (lastdata.length === 0) {
         let Nodiv = document.createElement('div')
@@ -186,7 +186,6 @@ function loading_data(token) {
         const lists = { "schoolCode": "School Code :", "userMobile": "Teacher's Mobile :", "teacherCode": "Teacher's Code :", "teacherName": "Teacher's Name :" }
         //teacher data
         container.appendChild(GetTeacherData(JSON.parse(lastdata[0]), lists))
-        document.querySelector(`#activeimport`).addEventListener('input', () => outputFileContents('activeimport'))
         //GET exam MENU
         fetchmenu(lastdata)
         examdetails(lastdata)
