@@ -1,7 +1,8 @@
 .tab img {
-    width: 100%;
-    margin: 2rem 0rem;
     border: .05em solid grey;
+    margin: 1em 0em;
+    margin-inline: auto;
+    width: 70%;
 }
 
 pre {
@@ -14,7 +15,7 @@ pre {
 
 @media screen and (max-width: 800px) {
     .tab img {
-        margin: 1em 0em;
+        width: 100%;
         border: .05em solid grey;
     }
 }
