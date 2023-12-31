@@ -1,9 +1,35 @@
 function web_import() {
-    filename = []
-    document.querySelectorAll('#sx_model div.ui.tab.segment.active span:nth-child(1) .detail').forEach(e => filename.push(e.innerText))
-    getdata = localStorage.activeimport
-    if (getdata) { file_input(localStorage.activeimport); successToast("Imported", "Suceessful", 3000) }
-    else { errorToast("Select file", "No data found", 3000) }
+    prev = document.querySelector(`#activeimportcontain`)
+    prev ? prev.remove() : "";
+    var textElement = document.createElement('div')
+    textElement.innerHTML = `<div class="ui header">Import Exam Data</div>
+        <div class="content"><div class="ui file input action"><input accept=".csv,.txt" id="activeimport" type="file"><label for="activeimport" data-variation="blue"  data-tooltip="Import File for Currently visible Exam table" data-position="top center" class="ui blue button">File for active Exam</label></div></div>`
+    textElement.classList = "ui fullscreen modal"
+    textElement.id = `activeimportcontain`
+    document.body.appendChild(textElement);
+    $('#activeimportcontain').modal({
+        blurring: true,
+        allowMultiple: true,
+        actions: [{ text: 'Close', class: 'black' }]
+    }).modal('show');
+    let getdata;
+    document.querySelector(`#activeimport`).addEventListener('input', () => {
+        file = document.querySelector(`#activeimport`).files[0];
+        const reader = new FileReader()
+        try {
+            reader.readAsText(file)
+            reader.addEventListener("load", () => {
+                getdata = reader.result
+                if (getdata !== "") { file_input(getdata); successToast(file.name.substring(0, 10), "Imported Successful", 3000) }
+                else { errorToast("Select file", "No data found", 3000) }
+            })
+            document.querySelector(`#activeimport`).nextElementSibling.classList.replace('blue', "green")
+        }
+        catch {
+            document.querySelector(`#activeimport`).nextElementSibling.classList.replace('blue', "red")
+        }
+        $('#activeimportcontain').modal('hide');
+    });
 }
 
 //pending
