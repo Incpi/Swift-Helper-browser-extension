@@ -56,7 +56,7 @@ function examdetails(data) {
             <a class="ui  tertiary basic label">Not Saved</a>
         </span></div>
         <div class="ui fluid fitted segment" style="text-wrap: nowrap;overflow-x: scroll;">
-        <table class="ui last stuck sortable table"  id="${id}_table"></table></div>`
+        <table class="ui last selectable stuck sortable table"  id="${id}_table"></table></div>`
     }
 }
 function fetchmenu(listdata) {
