@@ -18,4 +18,10 @@ pre {
         width: 100%;
         border: .05em solid grey;
     }
+
+    .logo.menu img {
+        --width: 5em;
+        max-width: var(--width) !important;
+        max-height: var(--width) !important;
+    }
 }

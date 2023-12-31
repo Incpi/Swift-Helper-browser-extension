@@ -257,7 +257,6 @@ function init() {
     document.querySelectorAll(".lang .button").forEach(element => {
       element.classList.contains("green") ? element.classList.remove("green") : element.classList.add("green")
     })
-    console.log(document.querySelector(".lang .green").innerHTML)
     obj = document.querySelector(".lang .green").innerHTML === "ENG"
     how2(obj)
     genimgloop(obj)
