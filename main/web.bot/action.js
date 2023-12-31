@@ -4,13 +4,20 @@ function web_import() {
     var textElement = document.createElement('div')
     textElement.innerHTML = `<div class="ui header">Import Exam Data</div>
         <div class="content"><div class="ui file input action"><input accept=".csv,.txt" id="activeimport" type="file"><label for="activeimport" data-variation="blue"  data-tooltip="Import File for Currently visible Exam table" data-position="top center" class="ui blue button">File for active Exam</label></div></div>`
-    textElement.classList = "ui fullscreen modal"
+    textElement.classList = "ui overlay fullscreen modal"
     textElement.id = `activeimportcontain`
     document.body.appendChild(textElement);
     $('#activeimportcontain').modal({
         blurring: true,
         allowMultiple: true,
-        actions: [{ text: 'Close', class: 'black' }]
+        actions: [{ text: 'Close', class: 'black' }],
+        transition: {
+            showMethod: 'zoom',
+            showDuration: 1000,
+            hideMethod: 'fade',
+            hideDuration: 500,
+            closeEasing: 'easeOutBounce'
+        }
     }).modal('show');
     let getdata;
     document.querySelector(`#activeimport`).addEventListener('input', () => {
