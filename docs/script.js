@@ -150,7 +150,7 @@ function how2(t) {
   <div class="ui header">Step 1: Download a zip file with the extension</div>
   <div class="ui description">
     If you already have downloaded a file with the plugin - skip this step.
-    If you don't have a file, but have a link to a github repository - follow the link, then click the big green "Clone
+    If you don't have a file, but have a link to a github repository - follow the link  <a href="https://github.com/incpi/Swift-Helper-browser-extension" target="_blank" class="tertiary ui purple button"><i class="github icon"></i>Github</a>, then click the big green "Clone
     or download" button, then click Download ZIP. 
     <img class='ui rounded centered image' src='Github/Github_1.webp'></img>
     <img class='ui rounded centered image' src='Github/Github_2.webp'></img>
@@ -207,9 +207,10 @@ function how2(t) {
   <br>
   <div class="ui description">ZIP ફાઇલ અથવા GitHub રિપોઝીટરીમાંથી Chrome એક્સ્ટેંશન કેવી રીતે ઇન્સ્ટોલ કરવુ.<br>Chrome Extension એ તમારા બ્રાઉઝરમાં કાર્યક્ષમતા ઉમેરે છે.જો કે, અધિકૃત Chrome વેબ સ્ટોર પર તમામ એક્સ્ટેન્શન્સ ઉપલબ્ધ નથી. કેટલીકવાર, તમે ZIP ફાઇલ અથવા GitHub રીપોઝીટરીમાંથી એક્સ્ટેંશન ઇન્સ્ટોલ કરી શકવુ શકો છો. તે કરવા માટેનાં પગલાં અહીં છે.  </div>
   <div class="ui header">Step 1: Download a zip file with the extension</div>
-  <div class="ui description">જો તમે પહેલાથી જ પ્લગઇન EDGE સ્ટોર પરથી ડાઉનલોડ કરી હોય તો - આ પગલું અવગણો. જો તમારી પાસે ફાઇલ નથી, પરંતુ તમારી પાસે GitHub રીપોઝીટરીની લિંક છે - લિંકને અનુસરો, પછી મોટા લીલા "ક્લોન અથવા ડાઉનલોડ" બટનને ક્લિક કરો, પછી ડાઉનલોડ ZIP પર ક્લિક કરો.
+  <div class="ui description">જો તમે પહેલાથી જ પ્લગઇન EDGE સ્ટોર પરથી ડાઉનલોડ કરી હોય તો - આ પગલું અવગણો.<br> જો તમારી પાસે ફાઇલ નથી, પરંતુ તમારી પાસે GitHub રીપોઝીટરીની લિંક  <a href="https://github.com/incpi/Swift-Helper-browser-extension" target="_blank" class="tertiary ui purple button"><i class="github icon"></i>Github</a> - લિંકને અનુસરો, 
+  પછી મોટા લીલા "ક્લોન અથવા ડાઉનલોડ" બટનને ક્લિક કરો, પછી ડાઉનલોડ ZIP પર ક્લિક કરો.
   <img class='ui rounded centered image' src='Github/Github_1.webp'></img>
-    <img class='ui rounded centered image' src='Github/Github_2.webp'></img></div>
+  <img class='ui rounded centered image' src='Github/Github_2.webp'></img></div>
   <div class="ui header">Step 2: Extract the contents of the zip file</div>
   <div class="ui description">ડાઉનલોડ કરેલી ZIP ફાઇલ પર જમણું ક્લિક કરો, પછી "અહીં બહાર કાઢો" ક્લિક કરો. આ ZIP ફાઇલના સમાન નામ સાથે એક ફોલ્ડર બનાવશે, જેમાં એક્સ્ટેંશન ફાઇલો હશે.
   <img class='ui rounded centered image' src='Github/Github_3.webp'></img></div>
