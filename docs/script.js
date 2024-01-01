@@ -122,7 +122,7 @@ function pc(t) {
     you have any questions or feedback about Xamta, feel free to leave a comment below or contact me via email.
   </div>
 </div>`
-  document.querySelector('#pc').innerHTML = t ? english : gujarati
+  document.querySelector('#pc').innerHTML = t ? gujarati : english
 }
 
 function genimgloop(t) {
@@ -132,7 +132,7 @@ function genimgloop(t) {
     english += `<img class='ui rounded centered image' src='mobile/XAMTA Tutorial-${i}.webp'></img>`;
     i++
   }
-  document.querySelector('#imgloop').innerHTML = english//t ? english : gujarati
+  document.querySelector('#imgloop').innerHTML = english//t ?  gujarati:english 
 }
 
 function how2(t) {
@@ -245,21 +245,22 @@ function how2(t) {
     કરો બટન પર ક્લિક કરો.
   </div>
 </div>`
-  document.querySelector('#h2use').innerHTML = t ? english : gujarati
+  document.querySelector('#h2use').innerHTML = t ? gujarati : english
 }
 
 function init() {
   document.querySelector(".lang").addEventListener('click', () => {
     document.querySelectorAll(".lang .button").forEach(element => {
-      element.classList.contains("green") ? element.classList.remove("green") : element.classList.add("green")
+      element.classList.contains("green") ? element.classList.remove("green") : element.classList.add("green");
     })
-    obj = document.querySelector(".lang .green").innerHTML === "ENG"
+    obj = document.querySelector(".lang .green").innerHTML !== "ENG"
+    localStorage.setItem("lang_helper", obj)
     how2(obj)
     genimgloop(obj)
     pc(obj)
   });
-
-  obj = document.querySelector(".lang .green").innerHTML === "ENG"
+  obj = localStorage.lang_helper === 'true'
+  document.querySelectorAll(".lang .button")[obj ? 1 : 0].classList.add('green')
   how2(obj)
   genimgloop(obj)
   pc(obj)
