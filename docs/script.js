@@ -131,7 +131,7 @@ function genimgloop(t) {
     english += `<img class='ui rounded centered image' src='mobile/XAMTA Tutorial-${i}.webp'></img>`;
     i++
   }
-  document.querySelector('#imgloop').innerHTML = english//t ?  gujarati:english 
+  document.querySelector('#imgloop').innerHTML = english + '<div class="ui text">Credits: convegenius.ai or to other Unknowns</div>'//t ?  gujarati:english 
 }
 
 function how2(t) {
