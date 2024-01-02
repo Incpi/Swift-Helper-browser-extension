@@ -130,12 +130,16 @@ function web_save(id = '#progressbar') {
         timeout = 500
         setTimeout(function () {
             data_btn[0].dispatchEvent(new Event('click'))
+            if ((data_btn[0].parentElement.parentElement.classList.contains('red') || data_btn[0].parentElement.parentElement.classList.contains('blue')) && data_btn[0].classList.contains('fluid')) {
+                data_btn[0].classList.add('disabled')
+            }
             if (data_btn.length !== 0) {
                 myLoop();
             }
         }, timeout)
     }
     myLoop();
+    document.querySelectorAll('#sx_model div.ui.tab.segment.active tr.blue .button.disabled,#sx_model div.ui.tab.segment.active tr.red .button.disabled').forEach(e => e.classList.remove('disabled'))
 }
 
 function successDataSave(e) {

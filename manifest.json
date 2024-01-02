@@ -62,7 +62,7 @@
     "*://*.convegenius.ai/*"
   ],
   "short_name": "SWiftHelper",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "web_accessible_resources": [
     {
       "resources": [

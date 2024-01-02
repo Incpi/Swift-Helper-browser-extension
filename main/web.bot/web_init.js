@@ -1,7 +1,9 @@
 function lastbotmsg() {
     var msg = JSON.parse(posthttp('https://v2-bot-auth.cgslate.com/api/bot/get-messages', `{"bot_uuid":"0296339483100153","direction":"backward"}`, [`mobile,${localStorage.getItem('mobile')}`, `session-id,${localStorage.getItem('token')}`]))
+
     let payload = [];
     function load(payload, msg = msg.messages) {
+        log.log(msg)
         for (i = 0; i < msg.length; i++) {
             if (msg[i].type === 'article') {
                 const x = msg[i].article[0].actions[0].website.payload.replaceAll("\'", "\"")
@@ -11,10 +13,11 @@ function lastbotmsg() {
         return payload
     }
     tokendata = JSON.stringify(msg.next_token)
+    payload = load(payload, msg.messages)
     // i = 0
-    // while (payload.length < 5) {
+    // while (payload.length < 3 || i <= 3) {
     var msg_u = JSON.parse(posthttp('https://v2-bot-auth.cgslate.com/api/bot/get-messages', `{"bot_uuid":"0296339483100153","direction":"backward","next_token":${tokendata}}`, [`mobile,${localStorage.getItem('mobile')}`, `session-id,${localStorage.getItem('token')}`]))
-    load(payload, msg_u.messages)
+    payload = load(payload, msg_u.messages)
     tokendata = JSON.stringify(msg_u.next_token)
     //     i++
     // }
@@ -172,7 +175,7 @@ function sort(data, key) {
 //trigger
 function loading_data(token) {
     const container = document.querySelector('#sx_model .content')
-    container.innerHTML="";
+    container.innerHTML = "";
     lastdata = lastbotmsg()
     if (lastdata.length === 0) {
         let Nodiv = document.createElement('div')
