@@ -26,6 +26,9 @@ In Google Chrome, Navigate to Settings – > Extensions
 Enable Developer Mode (slider on the top-right)
 Click: "Load Unpacked Extension" and select the folder with the plugin data
 ## ChangeLog:
+## 3.0.1 
+- [BugFix] Save All Buttons
+  
 ## 3.0.0
 - Import feature has been added
 - Bug Fixes [Error handling imporved]
