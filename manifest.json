@@ -14,7 +14,7 @@
   },
   "applications": {
     "gecko": {
-      "id": "Swift-Helper-Extension@incpi"
+      "id": "Swift-Helper@incpi"
     }
   },
   "author": "Omkar Patel",
@@ -54,14 +54,14 @@
     "128": "docs/images/icons/icon128.png"
   },
   "manifest_version": 3,
-  "name": "Swift-Helper-Extension Helper",
+  "name": "Swift Helper",
   "permissions": [
     "declarativeContent",
     "storage",
     "webRequest",
     "*://*.convegenius.ai/*"
   ],
-  "short_name": "SWiftHelper",
+  "short_name": "SHelper",
   "version": "3.0.1",
   "web_accessible_resources": [
     {
