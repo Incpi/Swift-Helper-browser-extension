@@ -123,7 +123,7 @@ function load_marks_online(id, exam, student) {
         }
     }
 }
-function tablelisten(id, exam, student) {
+function tablelisten(id, exam, lastdata) {
     // document.querySelector('#sx_model .header').innerHTML = `<img class='ui rounded centered image' width="40" src=${chrome.runtime.getURL("docs/images/icon.png")}></img>`
     document.querySelectorAll(`#${id} tr`).forEach(e => e.addEventListener('change', () => {
         m = 0; document.querySelectorAll(`#${id} tr[sid="${e.getAttribute('sid')}"] input[type="number"]`).forEach(mark => m += parseInt(mark.value))
@@ -139,10 +139,11 @@ function tablelisten(id, exam, student) {
             x.checked ? x.parentNode.parentNode.classList.replace('red', "green") : x.parentNode.parentNode.classList.replace("green", 'red')
             x.checked ? inputs.forEach(i => i.parentNode.classList.remove('disabled')) : inputs.forEach(i => i.parentNode.classList.add('disabled'));
         });
-        e.querySelector(`.button`).addEventListener('click', () => { makebody(e, exam) })
+        log.log(exam)
+        e.querySelector(`.button`).addEventListener('click', () => { makebody(lastdata, e, exam) })
     })
 }
-function makebody(trdata, exam) {
+function makebody(lastdata, trdata, exam) {
     suid = trdata.getAttribute('sid')
     arr = []
     maxsum = 0;
@@ -158,13 +159,21 @@ function makebody(trdata, exam) {
     x.questions.forEach(e => sum += parseInt(e.score))
     sleep(250).then(() => {
         present = trdata.querySelector("input[type='checkbox']").checked ? 1 : 2
-        body = `{"data": {"studentID": "${suid}","examID": "${payload.examID}","schoolCode": "${payload.schoolCode}","section": "${payload.section}","userMobile": "${payload.userMobile}","teacherCode": "${payload.teacherCode}","teacherName": "${payload.teacherName}","userMedium": "${payload.userMedium}","grade": "${payload.grade}",`
+        examid = document.querySelector('#sx_model div.active a[data]').getAttribute('data')
+        for (i in lastdata) {
+            payload = JSON.parse(lastdata[i])
+            if (payload.examID == examid) {
+                body = `{"data": {"studentID": "${suid}","examID": "${payload.examID}","schoolCode": "${payload.schoolCode}","section": "${payload.section}","userMobile": "${payload.userMobile}","teacherCode": "${payload.teacherCode}","teacherName": "${payload.teacherName}","userMedium": "${payload.userMedium}","grade": "${payload.grade}",`
+                break
+            }
+        }
         if (present === 1) {
             body += `"scores": { "status": ${parseInt(present)},"totalMarks": ${parseInt(maxsum)},"obtainedMarks": ${parseInt(sum)},"questions":${JSON.stringify(x.questions)}}}}`
         } else {
             body += `"scores": { "status": ${parseInt(present)}}}}`
         }
         body = body.replaceAll(/[\n\r]+/g, "");
+        log.debug(body)
         return posthttp(`https://saral-bot.gujaratvsk.org/api/save-student-scores?token=${token}`, body, [], trdata)
     });
 }
@@ -172,6 +181,7 @@ function makebody(trdata, exam) {
 function sort(data, key) {
     return data.sort((a, b) => parseInt(a[key]) - parseInt(b[key]))
 }
+
 //trigger
 function loading_data(token) {
     const container = document.querySelector('#sx_model .content')
@@ -198,7 +208,8 @@ function loading_data(token) {
             let exam = JSON.parse(httpGet(`https://saral-bot.gujaratvsk.org/api/get-exam-details?token=${token}&examID=${payload.examID}`))
             var student = JSON.parse(httpGet(`https://saral-bot.gujaratvsk.org/api/get-student-list?token=${token}&schoolCode=${payload.schoolCode}&grade=${payload.grade}&section=${payload.section}&examID=${payload.examID}`))
             fetch_table(`${id}_table`, exam, student)
-            tablelisten(`${id}_table`, exam, student)
+            log.debug(exam)
+            tablelisten(`${id}_table`, exam, lastdata)
             load_marks_online(`${id}_table`, exam, student)
             $(`#${id}_table`).tablesort()
         }
