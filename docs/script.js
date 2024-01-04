@@ -136,11 +136,11 @@ function genimgloop(t) {
 
 function how2(t) {
   english = ` <div class='ui segment'>
-  <div class="ui header">You can either download from EDGE store (Coming soon) or GitHub.</div>
+  <div class="ui header">You can either download from EDGE store or GitHub.</div>
   <div class="ui description">
-    How to Install a Chrome Extension from a Zip File or a Github Repository
+   div How to Install a Chrome Extension from a Github Repository or Edge store
     <br>
-    Chrome extensions are small programs that add functionality to your browser. They can help you customize your
+    Extensions are small programs that add functionality to your browser. They can help you customize your
     browsing
     experience, enhance your productivity, or improve your security. However, not all extensions are available on the
     official Chrome Web Store. Sometimes, you may want to install an extension from a zip file or a github repository.
@@ -148,7 +148,10 @@ function how2(t) {
   </div>
   <div class="ui header">Step 1: Download a zip file with the extension</div>
   <div class="ui description">
-    If you already have downloaded a file with the plugin - skip this step.
+    If you want to get from edge store- 
+    <a href="https://microsoftedge.microsoft.com/addons/detail/swifthelperextension-he/fjomdodnpampgonfahapeepbgakcckao"
+      target="_blank" class="tertiary ui blue button"><i class="edge icon"></i>Edge Store</a>
+       - skip this step.<br>
     If you don't have a file, but have a link to a github repository - follow the link  <a href="https://github.com/incpi/Swift-Helper-browser-extension" target="_blank" class="tertiary ui purple button"><i class="github icon"></i>Github</a>, then click the big green "Clone
     or download" button, then click Download ZIP. 
     <img class='ui rounded centered image' src='Github/Github_1.webp'></img>
@@ -202,11 +205,12 @@ function how2(t) {
 </div>`
   gujarati = `
 <div class='ui segment'>
-  <div class="ui header">EDGE સ્ટોર પરથી (ટૂંક સમયમાં આવી રહ્યું છે) અથવા GitHub પરથી Download કરી શકો છો. </div>
+  <div class="ui header">EDGE સ્ટોર અથવા GitHub પરથી Download કરી શકો છો. </div>
   <br>
   <div class="ui description">ZIP ફાઇલ અથવા GitHub રિપોઝીટરીમાંથી Chrome Extension કેવી રીતે ઇન્સ્ટોલ કરવુ.<br>Chrome Extension એ તમારા બ્રાઉઝરમાં કાર્યક્ષમતા ઉમેરે છે.જો કે, અધિકૃત Chrome વેબ સ્ટોર પર તમામ એક્સ્ટેન્શન્સ ઉપલબ્ધ નથી. કેટલીકવાર, તમે ZIP ફાઇલ અથવા GitHub રીપોઝીટરીમાંથી Extension ઇન્સ્ટોલ કરી શકવુ શકો છો. તે કરવા માટેનાં પગલાં અહીં છે.  </div>
   <div class="ui header">Step 1: Download a zip file with the extension</div>
-  <div class="ui description">જો તમે પહેલાથી જ પ્લગઇન EDGE સ્ટોર પરથી Download કરી હોય તો - આ પગલું અવગણો.<br>
+  <div class="ui description">જો તમે પહેલાથી જ પ્લગઇન EDGE સ્ટોર પરથી Download (<a href="https://microsoftedge.microsoft.com/addons/detail/swifthelperextension-he/fjomdodnpampgonfahapeepbgakcckao"
+  target="_blank" class="tertiary ui blue button"><i class="edge icon"></i>Edge Store</a>) કરી હોય તો - આ પગલું અવગણો.<br>
   જો તમારી પાસે ફાઇલ નથી, પરંતુ તમારી પાસે GitHub રીપોઝીટરીની લિંક  <a href="https://github.com/incpi/Swift-Helper-browser-extension" target="_blank" class="tertiary ui purple button"><i class="github icon"></i>Github</a>, 
   પછી મોટા લીલા "Code અથવા Download" બટનને ક્લિક કરો, પછી Download ZIP પર ક્લિક કરો.
   <img class='ui rounded centered image' src='Github/Github_1.webp'></img>
