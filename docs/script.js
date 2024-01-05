@@ -1,16 +1,17 @@
 function pc(t) {
   english = `<div class='ui segment'>
-  <div class="ui header">States by Color</div>
-  <div class="ui fluid tertiary buttons">
-    <button class="ui red button">Error</button>
-    <button class="ui yellow button">Warning</button>
-    <button class="ui green button">Success</button>
-    <button class="ui blue button">Ready</button>
+  <div class="ui right dividing rail">
+  <div class="ui segment">
+    <div class="ui header">States by Color</div>
+    <div class="ui vertical  fluid tertiary buttons">
+      <button class="ui red button">Error</button>
+      <button class="ui yellow button">Warning</button>
+      <button class="ui green button">Success</button>
+      <button class="ui blue button">Ready</button>
+    </div>
   </div>
 </div>
-<div class='ui segment'>
   <div class="ui header">How to use Swift Helper, a Chrome extension for online exam management</div>
-  <br>
   If you are looking for a convenient and efficient way to manage your online exams, you might want to try Swift Helper,
   a Chrome extension that lets you enter marks, import & export, and generate reports for your students. In this
   blog post, I will show you how to install and use Swift Helper in easy steps.
@@ -55,21 +56,20 @@ function pc(t) {
     export your exam reports by clicking on the report button on the chat bot. You can also access your previous
     exams by selecting them from the drop-down menu on the chat bot. I hope this blog post was helpful for you. If
     you have any questions or feedback about Swift Helper, feel free to leave a comment below or contact me via email.
-  </div>
-</div>`
-  gujarati = `
-  <div class='ui segment'>
-  <div class="ui header">States by Color</div>
-  <div class="ui fluid tertiary buttons">
-    <button class="ui red button">Error</button>
-    <button class="ui yellow button">Warning</button>
-    <button class="ui green button">Success</button>
-    <button class="ui blue button">Ready</button>
+  </div>`
+  gujarati = `<div class='ui segment'>
+  <div class="ui right dividing rail">
+  <div class="ui segment">
+    <div class="ui header">States by Color</div>
+    <div class="ui vertical  fluid tertiary buttons">
+      <button class="ui red button">Error</button>
+      <button class="ui yellow button">Warning</button>
+      <button class="ui green button">Success</button>
+      <button class="ui blue button">Ready</button>
+    </div>
   </div>
 </div>
-<div class='ui segment'>
   <div class="ui header">How to use Swift Helper, a Chrome extension for online exam management</div>
-  <br>
   જો તમે તમારી ઓનલાઈન પરીક્ષાઓનું સંચાલન કરવા માટે અનુકૂળ અને કાર્યક્ષમ રીત શોધી રહ્યા છો, તો તમે Swift Helper અજમાવી શકો
   છો, એક Chrome Extension જે તમને માર્કસ દાખલ કરવા, આયાત અને નિકાસ કરવા અને તમારા વિદ્યાર્થીઓ માટે રિપોર્ટ્સ
   જનરેટ કરવા દે છે. આ માં બ્લોગ પોસ્ટ, હું તમને બતાવીશ કે Swift Helper કેવી રીતે ઇન્સ્ટોલ કરવું અને તેનો ઉપયોગ કેવી રીતે
