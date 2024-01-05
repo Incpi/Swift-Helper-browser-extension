@@ -1,0 +1,38 @@
+[
+    {
+        "version": "3.0.1",
+        "text": [
+            "[BugFix] Save All Buttons"
+        ]
+    },
+    {
+        "version": "3.0.0",
+        "text": [
+            "Import feature has been added",
+            "Bug Fixes [Error handling imporved]",
+            "[Improvement] more Bugfix.[ popup page, notice on no data, etc. ]",
+            "new site tutorial: Read More here Swift-Helper-browser-extension",
+            "Patchs: New fixes + error handling + API Updated"
+        ]
+    },
+    {
+        "version": "2.0.0",
+        "text": [
+            "[Improvement] Popup Bugfix.",
+            "[Feature] UI Changes.",
+            "Design IS flexible control then ever."
+        ]
+    },
+    {
+        "version": "1.0.2",
+        "text": [
+            "added export/imports features"
+        ]
+    },
+    {
+        "version": "1.0.1",
+        "text": [
+            "first public version for this plugin."
+        ]
+    }
+]

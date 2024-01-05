@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Swift Helper</title>
@@ -32,7 +31,8 @@
     </div>
   </div>
   <div class="ui orange secondary pointing centered fluid menu">
-    <a class="active item" data-tab="first">Install</a>
+    <a class="active item" data-tab="zero">About</a>
+    <a class="item" data-tab="first">Install</a>
     <a class="item" data-tab="second">Desktop</a>
     <a class="item" data-tab="third">Mobile</a>
   </div>
@@ -52,12 +52,15 @@
             target="_blank" class="ui big secondary blue button"><i class="edge icon"></i>Edge Store</a>
           <a href="https://github.com/incpi/Swift-Helper-browser-extension" target="_blank"
             class="ui big secondary purple button"><i class="github icon"></i>Github</a>
-          <a href="https://www.youtube.com/@Swift_Helper/videos" target="_blank"
-            class="ui big secondary red button"><i class="youtube icon"></i>Youtube</a>
+          <a href="https://www.youtube.com/@Swift_Helper/videos" target="_blank" class="ui big secondary red button"><i
+              class="youtube icon"></i>Youtube</a>
         </div>
       </div>
     </div>
-    <div class="ui bottom active tab segment" data-tab="first">
+    <div class="ui bottom active tab segment" data-tab="zero">
+      <div id="readme" class='ui container'></div>
+    </div>
+    <div class="ui bottom tab segment" data-tab="first">
       <div id="h2use" class='ui container'></div>
     </div>
     <div class="ui bottom tab segment" data-tab="second">
@@ -100,5 +103,6 @@
   </div>
 </body>
 <script src="script.js"></script>
+<script src="change.js" type="module"></script>
 
 </html>
