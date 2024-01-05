@@ -1,4 +1,6 @@
-import object from './readme.json' assert { type: 'json' };
+import datajson from './readme.json' assert { type: 'json' };
+let object = datajson.data
+let datelastchg = datajson.date
 let readme = '<h2 class="ui big horizontal divider">Change logs</h2><div class="ui relaxed list">'
 for (const key of object) {
     readme += `<div class="item"><i class="large github top aligned icon"></i><div class="content"><a class="ui medium header">${key.version}</a><ul> `
@@ -20,3 +22,5 @@ Working on your first Pull Request? You can learn how from this free series How 
 let container = `<div class="ui segment">${readme}</div><div class="ui segment">${changelog}</div>`
 
 document.querySelector('#readme').innerHTML = container
+//Date set timezome
+document.querySelector('.list a.green').innerHTML = `${Math.round((new Date() - new Date(datelastchg)) / 86400000)} Days ago`

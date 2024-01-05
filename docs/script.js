@@ -265,8 +265,6 @@ function init() {
   how2(obj)
   genimgloop(obj)
   pc(obj)
-  //Date set timezome
-  document.querySelector('.list a.green').innerHTML = `${Math.round((new Date() - new Date('01-04-24')) / 86400000)} Days ago`
   $('.menu a:not([href]).item').tab()
 }
 init()
