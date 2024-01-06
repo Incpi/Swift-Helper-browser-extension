@@ -1,4 +1,7 @@
 {
+    "date": "01-05-24",
+    "format": "mm-dd-yy",
+    "yt_link": "m3Bl3_A4puw",
     "data": [
         {
             "version": "3.0.1",
@@ -36,7 +39,5 @@
                 "first public version for this plugin."
             ]
         }
-    ],
-    "date": "01-05-24",
-    "format": "mm-dd-yy"
+    ]
 }
