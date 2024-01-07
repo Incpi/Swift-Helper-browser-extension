@@ -28,6 +28,7 @@ Click: "Load Unpacked Extension" and select the folder with the plugin data
 ## ChangeLog:
 ## 3.0.1 
 - [BugFix] Save All Buttons
+- [patch] - v2 more fixes
   
 ## 3.0.0
 - Import feature has been added

@@ -61,8 +61,8 @@
     "webRequest",
     "*://*.convegenius.ai/*"
   ],
-  "short_name": "SHelper",
-  "version": "3.0.1",
+  "short_name": "S_Helper",
+  "version": "3.0.2",
   "web_accessible_resources": [
     {
       "resources": [
