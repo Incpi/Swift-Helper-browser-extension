@@ -33,7 +33,7 @@ function GetTeacherData(lastmsglist, teacherDetails) {
     segement = `<span class="ui item small header">Teacher Details</span>`
     for (i in lastmsglist) {
         if (Object.keys(teacherDetails).includes(i)) {
-            segement += `<a class="ui active item large basic label">${teacherDetails[i]}<div class="detail">DevMode Stream</div> </a>`//${lastmsglist[i]}</div> </a>`
+            segement += `<a class="ui active item large basic label">${teacherDetails[i]}<div class="detail">${lastmsglist[i]}</div> </a>`
         }
     }
     segement += `
