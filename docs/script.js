@@ -1,4 +1,4 @@
-function pc(t) {
+async function pc(t) {
   english = `<div class='ui segment'>
   <div class="ui right dividing rail">
   <div class="ui segment">
@@ -124,17 +124,21 @@ function pc(t) {
   document.querySelector('#pc').innerHTML = t ? gujarati : english
 }
 
-function genimgloop(t) {
+async function genimgloop(t) {
   let english = gujarati = "";
   let i = 1
-  while (i <= 28) {
+  while (i <= 2) {
     english += `<img class='ui rounded centered image' src='mobile/XAMTA Tutorial-${i}.webp'></img>`;
     i++
   }
-  document.querySelector('#imgloop').innerHTML = english + '<div class="ui text">Credits: convegenius.ai or to other Unknowns</div>'//t ?  gujarati:english 
+  document.querySelector('#imgloop').innerHTML = english + `<div class="ui text">Credits: convegenius.ai or to other Unknowns</div>
+  <br><h3 class="ui header">Follow below steps for mobile - PDF</h3>
+  <div class="ui fluid button"><a href="https://drive.google.com/file/d/1WZseUBQbKUi_1SdxATtlJEPL2kqVFbJ7/view"
+  rel="nofollow" target="_blank">Xamta App Tutorial માર્ગદર્શન માટે PDF ફાઈલ ડાઉનલોડ કરવા અહીં ક્લિક કરો</a>
+  </div>`//t ?  gujarati:english 
 }
 
-function how2(t) {
+async function how2(t) {
   english = ` <div class='ui segment'>
   <div class="ui header">Download from EDGE store or GitHub.</div>
   <div class="ui description">
@@ -249,22 +253,22 @@ function how2(t) {
   document.querySelector('#h2use').innerHTML = t ? gujarati : english
 }
 
-function init() {
-  document.querySelector(".lang").addEventListener('click', () => {
+async function init() {
+  document.querySelector(".lang").addEventListener('click', async () => {
     document.querySelectorAll(".lang .button").forEach(element => {
       element.classList.contains("green") ? element.classList.remove("green") : element.classList.add("green");
     })
     obj = document.querySelector(".lang .green").innerHTML !== "ENG"
     localStorage.setItem("lang_helper", obj)
-    how2(obj)
-    genimgloop(obj)
-    pc(obj)
+    await how2(obj)
+    await genimgloop(obj)
+    await pc(obj)
   });
   obj = localStorage.lang_helper === 'true'
   document.querySelectorAll(".lang .button")[obj ? 1 : 0].classList.add('green')
-  how2(obj)
-  genimgloop(obj)
-  pc(obj)
-  $('.menu a:not([href]).item').tab()
+  await how2(obj)
+  await genimgloop(obj)
+  await pc(obj)
+  $('.menu span.item').tab()
 }
 init()

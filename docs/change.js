@@ -4,7 +4,7 @@ let datelastchg = datajson.date
 let link = datajson.yt_link
 let readme = '<h2 class="ui big horizontal divider">Change logs</h2><div class="ui relaxed list">'
 for (const key of object) {
-    readme += `<div class="item"><i class="large github top aligned icon"></i><div class="content"><a class="ui medium header">${key.version}</a><ul> `
+    readme += `<div class="item"><i class="large github top aligned icon"></i><div class="content"><span class="ui medium header">${key.version}</span><ul> `
     for (const iter of key.text) {
         readme += `<li>${iter}</li>`
     }
@@ -26,4 +26,4 @@ document.querySelector('#readme').innerHTML = container
 //ytlink
 $('.ui.embed').embed();
 //Date set timezome
-document.querySelector('.list a.green').innerHTML = `${Math.round((new Date() - new Date(datelastchg)) / 86400000)} Days ago`
+document.querySelector('.list span.green').innerHTML = `${Math.round((new Date() - new Date(datelastchg)) / 86400000)} Days ago`
