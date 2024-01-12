@@ -20,7 +20,7 @@ let changelog = `<h2 class="ui  big horizontal divider">Contributing</h2>
 <br>
 Working on your first Pull Request? You can learn how from this free series How to <a href="https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github"> Contribute to an Open Source Project on GitHub<a></div>`
 
-let container = `<div class="ui segment"><div class="ui medium header">Get started with:</div><div class='ui orange right ribbon label'>In Gujarati / ગુજરાતી</div><div class="ui embed" data-source="youtube" data-id="${link}"></div></div><div class="ui segment">${readme}</div><div class="ui segment">${changelog}</div>`
+let container = `<div class="ui segment"><div class="ui medium header">Get started with:</div><div class='ui orange right ribbon label'>In Gujarati(ગુજરાતી) along with subtitles</div><div class="ui embed" data-source="youtube" data-id="${link}"></div></div><div class="ui segment">${readme}</div><div class="ui segment">${changelog}</div>`
 $('.ui.embed').embed();
 document.querySelector('#readme').innerHTML = container
 //ytlink
