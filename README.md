@@ -1,4 +1,6 @@
-## [Swift Helper browser extension](https://incpi.github.io/Swift-Helper-browser-extension/)
+# [Swift Helper browser extension](https://incpi.github.io/Swift-Helper-browser-extension/)
+
+## [Edge Store](https://microsoftedge.microsoft.com/addons/detail/swift-helper/fjomdodnpampgonfahapeepbgakcckao) Download now.
 
 This Browser Plugin automate the mark entry for teachers with some useful features.
 ---
