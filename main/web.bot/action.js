@@ -41,18 +41,19 @@ function web_import() {
 
 //pending
 function file_input(varinput) {
+    var constcol=5
     listraw = varinput.split("\n").slice(1)
     for (const iterator of listraw) {
-        classlist = iterator.split(",").slice(0, 4)
-        if (classlist.length < 4) { continue }
-        marks = iterator.split(",").slice(4).slice(0, iterator.split(",").length - 5)
+        classlist = iterator.split(",").slice(0, constcol)
+        if (classlist.length < constcol) { continue }
+        marks = iterator.split(",").slice(constcol).slice(0, iterator.split(",").length - (constcol+1))
         total = 0;
         marks.forEach(e => total += parseInt(e))
         cell = document.querySelector(`#sx_model .active table tr[sid= ${classlist[2]}']`)
         if (cell) {
             var cell_count = 0
-            cell.querySelector('.checkbox input').checked = classlist[3] === "P" ? true : false;
-            for (var iter = 4; iter < cell.children.length - 2; iter++) {
+            cell.querySelector('.checkbox input').checked = classlist[constcol-1] === "P" ? true : false;
+            for (var iter = constcol; iter < cell.children.length - 2; iter++) {
                 if (cell.children[iter].lastChild.nodeType === 1) {
                     cell.children[iter].lastChild.lastChild.value = marks[cell_count]
                     cell_count++;
@@ -71,7 +72,6 @@ function web_export(x = 0) {    // Getting values of current time for generating
 
     filename = []
     document.querySelectorAll('#sx_model div.ui.tab.segment.active span:nth-child(1) .detail').forEach(e => filename.push(e.innerText))
-
     let tablecsv = "";
     raw = document.querySelectorAll('#sx_model > div.content > div.ui.tab.segment.active table tr')
     for (const cell of raw) {

@@ -1,8 +1,14 @@
 {
-    "date": "01-05-24",
+    "date": "01-29-24",
     "format": "mm-dd-yy",
     "yt_link": "m3Bl3_A4puw",
     "data": [
+        {
+            "version": "3.1.0",
+            "text": ["[Feature] Gender added and Student Name format change.",
+                "[BugFix] minor bugfix"
+            ]
+        },
         {
             "version": "3.0.1",
             "text": [

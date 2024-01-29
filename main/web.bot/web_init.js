@@ -82,14 +82,15 @@ function fetchmenu(listdata) {
     }
 }
 function fetch_table(id, exam, student) {
-    tablegen = `<thead><tr><th>Sr No.</th><th>Student Name</th><th>Student ID</th><th>P/A</th>`
+    tablegen = `<thead><tr><th>Sr No.</th><th>Student Name</th><th>Student ID</th><th>Gender</th><th>P/A</th>`
     for (i = 0; i < exam.length; i++) { tablegen += `<th>${exam[i].questionTitle}</th>` }
     tablegen += `  <th>Total</th><th>Submit</th></tr></thead><tbody>`;
     for (st = 0; st < student.length; st++) {
         tablegen += `<tr sid="${student[st].studentId}">
                     <td class="pi1 enter fluid" >${((st + 1) < 10) ? '0' + (st + 1).toString() : st + 1}</td>
-                    <td class="pi1 enter fluid" >${student[st].name}</td>
-                    <td class="pi1 enter fluid">${student[st].studentId}</td>
+                    <td class="pi1 enter fluid" >${student[st].studentName} ${student[st].fatherName[0]}. ${student[st].surName}</td>
+                    <td class="pi1 enter fluid">${student[st].studentId}</td> 
+                    <td class="pi1 enter fluid">${student[st].gender}</td>
                     <td class="pi1 enter fluid left marked">
                     <div class="ui fitted slider checkbox"><input type="checkbox"><label></label></div></td>`
         for (i = 0; i < exam.length; i++) {
@@ -110,7 +111,7 @@ function load_marks_online(id, exam, student) {
                 $(`#${id} tr[sid=${student[st].studentId}] input[type="checkbox"]`).prop('checked', true);
                 examdata = sort(student[st].scores.questions, "questionID")
                 for (i = 0; i < examdata.length; i++) {
-                    document.querySelectorAll(`#${id} tr[sid="${student[st].studentId}"] input[type="number"]`)[i].value = find_obj_value(examdata, 'questionTitle', document.querySelectorAll(`#${id} thead > tr > th`)[i + 4].innerText, 'score')
+                    document.querySelectorAll(`#${id} tr[sid="${student[st].studentId}"] input[type="number"]`)[i].value = find_obj_value(examdata, 'questionTitle', document.querySelectorAll(`#${id} thead > tr > th`)[i + 5].innerText, 'score')
                 }
             } else {//a
                 $(`#${id} tr[sid=${student[st].studentId}]`).addClass("red");
@@ -124,7 +125,6 @@ function load_marks_online(id, exam, student) {
     }
 }
 function tablelisten(id, exam, lastdata) {
-    // document.querySelector('#sx_model .header').innerHTML = `<img class='ui rounded centered image' width="40" src=${chrome.runtime.getURL("docs/images/icon.png")}></img>`
     document.querySelectorAll(`#${id} tr`).forEach(e => e.addEventListener('change', () => {
         m = 0; document.querySelectorAll(`#${id} tr[sid="${e.getAttribute('sid')}"] input[type="number"]`).forEach(mark => m += parseInt(mark.value))
         document.querySelector(`#${id} tr[sid="${e.getAttribute('sid')}"] td:nth-last-child(2)`).innerHTML = m;
@@ -215,7 +215,7 @@ function loading_data(token) {
         }
     }
     // Activate tab on hover
-    $('.top .item').on('mouseenter', function () { $(this).tab('change tab', $(this).attr('id')) });
+    $('.menu .item').on('mouseenter', function () { $(this).tab('change tab', $(this).attr('id')) });
     // Initialize tabs
     $('.menu .item').tab();
 }

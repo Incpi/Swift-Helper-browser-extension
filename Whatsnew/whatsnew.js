@@ -14,8 +14,8 @@ async function whatsNewCheck(showOnlyOnce = true) {
         </div>
         <div class="ui segment">
             <div class="ui top secondary pointing equal orange width menu">
-                <a class="item" data-tab="two">Features</a>
-                <a class="item active" data-tab="three">About</a>
+                <a class="item active" data-tab="two">Features</a>
+                <a class="item" data-tab="three">About</a>
             </div>
             <div class="ui tab segment" data-tab="two">
                 <h3 class="ui header">
@@ -73,7 +73,7 @@ async function whatsNewCheck(showOnlyOnce = true) {
         `
         var textElement = document.createElement('div')
         textElement.innerHTML = `<div class="ui header">
-            <img class='ui centered image' src=${chrome.runtime.getURL("docs/images/logobig.png")}></img>
+            <img class='ui centered image' src=${chrome.runtime.getURL("docs/images/logobig.svg")}></img>
             <div style="float: right;font-size: 1.3rem;" class="ui orange large basic text">Version: ${manifestVersion}</div>
         </div>
         <div class="scrolling content">${Content}</div>`
