@@ -28,6 +28,9 @@ In Google Chrome, Navigate to Settings – > Extensions
 Enable Developer Mode (slider on the top-right)
 Click: "Load Unpacked Extension" and select the folder with the plugin data
 ## ChangeLog:
+## 3.2.0
+- [BugFix] UI bugfix
+
 ## 3.1.0 
 - [Feature] Gender added and Student Name format change.
 - [BugFix] minor bugfix

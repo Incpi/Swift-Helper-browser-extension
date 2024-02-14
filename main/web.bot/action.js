@@ -1,16 +1,26 @@
 function web_import() {
     prev = document.querySelector(`#activeimportcontain`)
+    data = document.querySelector('#sx_model .menu > .item.fluid.active').getAttribute("data-tab")
     prev ? prev.remove() : "";
     var textElement = document.createElement('div')
-    textElement.innerHTML = `<div class="ui header">Import Exam Data</div>
-        <div class="content"><div class="ui file input action"><input accept=".csv,.txt" id="activeimport" type="file"><label for="activeimport" data-variation="blue"  data-tooltip="Import File for Currently visible Exam table" data-position="top center" class="ui blue button">File for active Exam</label></div></div>`
-    textElement.classList = "ui overlay fullscreen modal"
+    textElement.innerHTML = `<div class="ui header item">Import Exam Data : <div class="ui label red">${data}</div></div>
+        <div class="content"><div class="ui file input action"><input accept=".csv,.txt" id="activeimport" type="file"><label for="activeimport" data-variation="blue"
+        class="ui blue button">Select File (CSV/TXT)</label></div></div>`
+    textElement.classList = "ui overlay modal"
+    textElement.style.position = 'sticky'
+    textElement.style.top = '25%'
     textElement.id = `activeimportcontain`
     document.body.appendChild(textElement);
     $('#activeimportcontain').modal({
         blurring: true,
-        allowMultiple: true,
-        actions: [{ text: 'Close', class: 'black' }],
+        // allowMultiple: true,
+        actions: [{
+            text: 'Close', class: 'black', click: () => {
+                document.querySelector("#sx_float").dispatchEvent(new Event('click'))
+                $('.menu .item').tab('change tab', data);
+                return true
+            }
+        }],
         transition: {
             showMethod: 'zoom',
             showDuration: 1000,
@@ -41,18 +51,18 @@ function web_import() {
 
 //pending
 function file_input(varinput) {
-    var constcol=5
+    var constcol = 5
     listraw = varinput.split("\n").slice(1)
     for (const iterator of listraw) {
         classlist = iterator.split(",").slice(0, constcol)
         if (classlist.length < constcol) { continue }
-        marks = iterator.split(",").slice(constcol).slice(0, iterator.split(",").length - (constcol+1))
+        marks = iterator.split(",").slice(constcol).slice(0, iterator.split(",").length - (constcol + 1))
         total = 0;
         marks.forEach(e => total += parseInt(e))
         cell = document.querySelector(`#sx_model .active table tr[sid= ${classlist[2]}']`)
         if (cell) {
             var cell_count = 0
-            cell.querySelector('.checkbox input').checked = classlist[constcol-1] === "P" ? true : false;
+            cell.querySelector('.checkbox input').checked = classlist[constcol - 1] === "P" ? true : false;
             for (var iter = constcol; iter < cell.children.length - 2; iter++) {
                 if (cell.children[iter].lastChild.nodeType === 1) {
                     cell.children[iter].lastChild.lastChild.value = marks[cell_count]

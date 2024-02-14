@@ -18,6 +18,10 @@ td {
     min-width: min-content !important
 }
 
+tr>td:last-child>.button {
+    width: 90% !important;
+}
+
 .pi1 {
     padding-inline: 1rem !important;
 }

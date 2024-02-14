@@ -53,6 +53,9 @@ function examdetails(data) {
             <a class="ui black basic label">Eduction Medium :<div class="detail">${payload.userMedium}</div></a>
         </span>
         <span style="float: right">
+            <a class="ui brown basic label" style="align-content: center;display: inline-flex;flex-wrap: wrap;align-items: center;padding: .2em;">Absent
+            <div class="detail" style="margin: 0 .5rem"><div class="ui fitted slider checkbox" style="padding: 0.3em;"><input type="checkbox"><label></label>
+            </div></div>Present</a>
             <a class="ui blue basic tertiary label">Entry<div class="detail">Ready to Save</div></a>
             <a class="ui red basic tertiary label">Absent<div class="detail">Saved</div></a>
             <a class="ui green basic tertiary label">Present<div class="detail">Saved</div></a>
@@ -215,9 +218,9 @@ function loading_data(token) {
         }
     }
     // Activate tab on hover
-    $('.menu .item').on('mouseenter', function () { $(this).tab('change tab', $(this).attr('id')) });
+    $('.menu .item.fluid').on('mouseenter', function () { $(this).tab('change tab', $(this).attr('id')) });
     // Initialize tabs
-    $('.menu .item').tab();
+    $('.menu .item.fluid').tab();
 }
 function configuration() {
     loading_data(token = 'f9b9ba1f-bf3a-450e-8d67-6c2a9f7977f55')
