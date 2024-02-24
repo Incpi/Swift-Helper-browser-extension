@@ -27,19 +27,26 @@ Download or clone the repo from github. Unpack if necessary.
 In Google Chrome, Navigate to Settings – > Extensions
 Enable Developer Mode (slider on the top-right)
 Click: "Load Unpacked Extension" and select the folder with the plugin data
+![](/docs/Github/Github_1.webp)
+![](/docs/Github/Github_2.webp)
+![](/docs/Github/Github_3.webp)
+![](/docs/Github/Github_4.webp)
+![](/docs/Github/Github_5.webp)
+![](/docs/Github/Github_6.webp)
+
 ## ChangeLog:
 ## 3.2.1
-- [Bugfix] Import window update
-- [BugFix] UI bugfix
+ - [BugFix] Import window fix
+ - [BugFix] UI bugfix
 
 ## 3.1.0 
 - [Feature] Gender added and Student Name format change.
 - [BugFix] minor bugfix
-  
+
 ## 3.0.1 
 - [BugFix] Save All Buttons
 - [patch] - v2 more fixes
-  
+
 ## 3.0.0
 - Import feature has been added
 - Bug Fixes [Error handling imporved]
@@ -53,12 +60,8 @@ Click: "Load Unpacked Extension" and select the folder with the plugin data
 - [Feature] UI Changes.
 - Design IS flexible control then ever.
 
----
-
 ## 1.0.2
-- added export/imports features
-## 1.0.1
-- first public version for this plugin.
+- Early development & public release
 
 ## Usages 
 - Refer help section in Extension Popup. (use site will be updated later)
@@ -76,13 +79,13 @@ for mark entry with Xamta chat bot
  5. You can also see the attendance status of each student in your exam. The present students will be marked as green and the absent ones as red.
  6. When you finish the exam, you can save all your answers by clicking on the button at the end of each row or the Save All button at the bottom of the popup window.
  7. preview:
-   ![image](https://github.com/incpi/Swift-Helper-browser-extension/assets/87596092/486cdfc4-6e93-4567-96c3-d8fd9670cafd)
+   ![image](/docs/Snapshots/exam_snapshot1.webp)
 
    - if no exam selected in xamta chatbot
-    ![image](https://github.com/incpi/Swift-Helper-browser-extension/assets/87596092/fe69e09e-4391-41a3-ae68-376d94e4f9a0)
+    ![image](/docs/Snapshots/blank.webp)
     
    - if it detects:
-    ![image](https://github.com/incpi/Swift-Helper-browser-extension/assets/87596092/0de103d0-86ec-4570-b2f2-88c572ebc861)
+    ![image](/docs/Snapshots/exam_snapshot1.webp)
     
    - if error happens:
     ![image](https://github.com/incpi/Swift-Helper-browser-extension/assets/87596092/487d874f-b05e-4056-bc93-ce193488d18c)
