@@ -46,7 +46,7 @@ function examdetails(data) {
         payload = JSON.parse(i)
         var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/\s+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`
         subtab = document.querySelector(`div.tab.segment[data-tab="${id}"]`)
-        subtab.innerHTML = `<div><span>
+        subtab.innerHTML = `<div  style="display: inline-flex;"><span>
             <a class="ui black basic label" data="${payload.examID}">Subject :<div class="detail">${payload.subject.split(":")[0]}</div></a>
             <a class="ui black basic label">Date :<div class="detail">${payload.subject.split(":")[1]}</div></a>
             <a class="ui black basic label">Grade :<div class="detail">${payload.grade}-${payload.section}</div></a>

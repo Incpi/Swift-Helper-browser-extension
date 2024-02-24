@@ -46,6 +46,7 @@ function web_import() {
             document.querySelector(`#activeimport`).nextElementSibling.classList.replace('blue', "red")
         }
         $('#activeimportcontain').modal('hide');
+        $('#sx_model').modal('show')
     });
 }
 
