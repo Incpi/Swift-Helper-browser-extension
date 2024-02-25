@@ -4,6 +4,13 @@
     "yt_link": "m3Bl3_A4puw",
     "data": [
         {
+            "version": "3.3.0",
+            "text": [
+                "[BugFix] UI Color & bugfix",
+                "[BugFix] better visuals due to color"
+            ]
+        },
+        {
             "version": "3.2.1",
             "text": [
                 "[BugFix] Import window fix",

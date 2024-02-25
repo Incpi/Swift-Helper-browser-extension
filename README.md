@@ -18,23 +18,10 @@ I guarantee:
 ### Features
 Mark entry from csv/Txt file ans get saved.
 
-## Installation 
-Install in Developer Mode from Sources
-Google Chrome
-If you know what you are doing, you can install the plugin directly from sources. Clone the repo and add the folder directly to Google Chrome
-
-Download or clone the repo from github. Unpack if necessary.
-In Google Chrome, Navigate to Settings – > Extensions
-Enable Developer Mode (slider on the top-right)
-Click: "Load Unpacked Extension" and select the folder with the plugin data
-![](/docs/Github/Github_1.webp)
-![](/docs/Github/Github_2.webp)
-![](/docs/Github/Github_3.webp)
-![](/docs/Github/Github_4.webp)
-![](/docs/Github/Github_5.webp)
-![](/docs/Github/Github_6.webp)
-
 ## ChangeLog:
+## 3.3.0
+ - [BugFix] UI Color & bugfix
+ - [BugFix] better visuals due to color
 ## 3.2.1
  - [BugFix] Import window fix
  - [BugFix] UI bugfix
@@ -61,7 +48,23 @@ Click: "Load Unpacked Extension" and select the folder with the plugin data
 - Design IS flexible control then ever.
 
 ## 1.0.2
-- Early development & public release
+- Early development & public release-+
+  
+## Installation 
+Install in Developer Mode from Sources
+Google Chrome
+If you know what you are doing, you can install the plugin directly from sources. Clone the repo and add the folder directly to Google Chrome
+
+Download or clone the repo from github. Unpack if necessary.
+In Google Chrome, Navigate to Settings – > Extensions
+Enable Developer Mode (slider on the top-right)
+Click: "Load Unpacked Extension" and select the folder with the plugin data
+![](/docs/Github/Github_1.webp)
+![](/docs/Github/Github_2.webp)
+![](/docs/Github/Github_3.webp)
+![](/docs/Github/Github_4.webp)
+![](/docs/Github/Github_5.webp)
+![](/docs/Github/Github_6.webp)
 
 ## Usages 
 - Refer help section in Extension Popup. (use site will be updated later)

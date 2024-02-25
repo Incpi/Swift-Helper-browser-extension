@@ -36,8 +36,8 @@
         "/lib/common/tool.js",
         "/lib/common/logging.js",
         "/Whatsnew/whatsnew.js",
-        "/main/web.bot/web_init.js",
-        "/main/web.bot/action.js",
+        "/main/web_init.js",
+        "/main/action.js",
         "/main/init.js"
       ],
       "matches": [
@@ -62,7 +62,7 @@
     "*://*.convegenius.ai/*"
   ],
   "short_name": "S_Helper",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "web_accessible_resources": [
     {
       "resources": [

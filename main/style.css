@@ -13,6 +13,12 @@
     --sx-font: 'Arial';
 }
 
+.ui.selectable.table tr:hover td.positive,
+.ui.table tr td.selectable.positive:hover,
+.ui.ui.selectable.table tr.positive:hover {
+    background: #e7ffe7;
+}
+
 td {
     padding: 0 !important;
     min-width: min-content !important

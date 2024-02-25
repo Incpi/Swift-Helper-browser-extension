@@ -6,7 +6,7 @@ async function pc(t) {
     <div class="ui vertical  fluid tertiary buttons">
       <button class="ui red button">Error</button>
       <button class="ui yellow button">Warning</button>
-      <button class="ui green button">Success</button>
+      <button class="ui positive button">Success</button>
       <button class="ui blue button">Ready</button>
     </div>
   </div>
@@ -64,7 +64,7 @@ async function pc(t) {
     <div class="ui vertical  fluid tertiary buttons">
       <button class="ui red button">Error</button>
       <button class="ui yellow button">Warning</button>
-      <button class="ui green button">Success</button>
+      <button class="ui positive button">Success</button>
       <button class="ui blue button">Ready</button>
     </div>
   </div>
@@ -152,7 +152,7 @@ async function how2(t) {
     <a href="https://microsoftedge.microsoft.com/addons/detail/swifthelperextension-he/fjomdodnpampgonfahapeepbgakcckao"
       target="_blank" class="tertiary ui blue button"><i class="edge icon"></i>Edge Store</a>
        - skip this all the below step.<br>
-    If you don't have a file, but have a link to a github repository - follow the link  <a href="https://github.com/incpi/Swift-Helper-browser-extension" target="_blank" class="tertiary ui purple button"><i class="github icon"></i>Github</a>, then click the big green "Clone
+    If you don't have a file, but have a link to a github repository - follow the link  <a href="https://github.com/incpi/Swift-Helper-browser-extension" target="_blank" class="tertiary ui purple button"><i class="github icon"></i>Github</a>, then click the big positive "Clone
     or download" button, then click Download ZIP. 
     <img class='ui rounded centered image' src='Github/Github_1.webp'></img>
     <img class='ui rounded centered image' src='Github/Github_2.webp'></img>
@@ -256,16 +256,16 @@ async function how2(t) {
 async function init() {
   document.querySelector(".lang").addEventListener('click', async () => {
     document.querySelectorAll(".lang .button").forEach(element => {
-      element.classList.contains("green") ? element.classList.remove("green") : element.classList.add("green");
+      element.classList.contains("positive") ? element.classList.remove("positive") : element.classList.add("positive");
     })
-    obj = document.querySelector(".lang .green").innerHTML !== "ENG"
+    obj = document.querySelector(".lang .positive").innerHTML !== "ENG"
     localStorage.setItem("lang_helper", obj)
     await how2(obj)
     await genimgloop(obj)
     await pc(obj)
   });
   obj = localStorage.lang_helper === 'true'
-  document.querySelectorAll(".lang .button")[obj ? 1 : 0].classList.add('green')
+  document.querySelectorAll(".lang .button")[obj ? 1 : 0].classList.add('positive')
   await how2(obj)
   await genimgloop(obj)
   await pc(obj)
