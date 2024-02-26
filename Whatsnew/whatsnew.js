@@ -17,6 +17,18 @@ async function whatsNewCheck(showOnlyOnce = true) {
                 <a class="item active" data-tab="two">Features</a>
                 <a class="item" data-tab="three">About</a>
             </div>
+            <div class="ui segment"><div class="ui relaxed list">
+                <div class="item">
+                    <div class="content">
+                        <span class="ui medium header">3.3.0</span>
+                        <ul>
+                            <li>[BugFix] UI Color &amp; bugfix</li><br>
+                            <li>[BugFix] better visuals due to color</li><br>
+                            <li>[Feature] Import improved to limit change depending import only.</li><br>
+                        </ul>
+                    </div>
+                </div>
+            </div></div>
             <div class="ui tab segment" data-tab="two">
                 <h3 class="ui header">
                     <div class="content">

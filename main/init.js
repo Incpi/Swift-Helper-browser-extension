@@ -12,6 +12,7 @@ function sidebar() {
 function refresh() {
     log.log("refersh start")
     $('#sx_model').remove();
+    sleep(50)
     document.querySelector("#sx_float").dispatchEvent(new Event('click'));
     $('.menu .item').tab();
     log.log("refersh Ends")

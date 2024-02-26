@@ -3,7 +3,7 @@ function web_import() {
     data = document.querySelector('#sx_model .menu > .item.fluid.active').getAttribute("data-tab")
     prev ? prev.remove() : "";
     var textElement = document.createElement('div')
-    textElement.innerHTML = `<div class="ui header item">Import Exam Data : <div class="ui label negative">${data}</div></div>
+    textElement.innerHTML = `<div class="ui header item">Import Exam Data : <div class="ui label red">${data}</div></div>
         <div class="content"><div class="ui file input action"><input accept=".csv,.txt" id="activeimport" type="file"><label for="activeimport" data-variation="blue"
         class="ui blue button">Select File (CSV/TXT)</label></div></div>`
     textElement.classList = "ui overlay modal"
@@ -62,15 +62,19 @@ function file_input(varinput) {
         marks.forEach(e => total += parseInt(e))
         cell = document.querySelector(`#sx_model .active table tr[sid= ${classlist[2]}']`)
         if (cell) {
-            var cell_count = 0
+            var cell_count = 0;
+            changelog = false;
             cell.querySelector('.checkbox input').checked = classlist[constcol - 1] === "P" ? true : false;
             for (var iter = constcol; iter < cell.children.length - 2; iter++) {
                 if (cell.children[iter].lastChild.nodeType === 1) {
-                    cell.children[iter].lastChild.lastChild.value = marks[cell_count]
+                    if (cell.children[iter].lastChild.lastChild.value != marks[cell_count]) {
+                        cell.children[iter].lastChild.lastChild.value = marks[cell_count];
+                        changelog = true
+                    }
                     cell_count++;
                 }
             }
-            cell.dispatchEvent(new Event('change'))
+            changelog && cell.dispatchEvent(new Event('change'))
         }
     }
     log.log('import is completed')

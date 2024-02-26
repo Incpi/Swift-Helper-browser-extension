@@ -22,6 +22,7 @@ Mark entry from csv/Txt file ans get saved.
 ## 3.3.0
  - [BugFix] UI Color & bugfix
  - [BugFix] better visuals due to color
+ - [Feature] Import improved to limit change depending import only.
 ## 3.2.1
  - [BugFix] Import window fix
  - [BugFix] UI bugfix

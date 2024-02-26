@@ -37,7 +37,7 @@ function GetTeacherData(lastmsglist, teacherDetails) {
         }
     }
     segement += `
-    <a class="ui right item image label"><img class='ui rounded centered image' src="${get_bot_static.configuration.photo}"> ${get_bot_static.configuration.name} <span class="ui basic ${get_bot_static.configuration.status === "ACTIVE" ? "positive" : "negative"} basic label"> ${get_bot_static.subscriber_count} </span></a></div >`
+    <a class="ui right item image label"><img class='ui rounded centered image' src="${get_bot_static.configuration.photo}"> ${get_bot_static.configuration.name} <span class="ui basic ${get_bot_static.configuration.status === "ACTIVE" ? "green" : "red"} basic label"> ${get_bot_static.subscriber_count} </span></a></div >`
     div.innerHTML += segement
     return div
 }
@@ -54,12 +54,12 @@ function examdetails(data) {
         </span>
         <span>
             <a class="ui brown basic label" style="align-content: center;display: inline-flex;flex-wrap: wrap;align-items: center;padding: .2em;">Absent
-            <div class="detail" style="margin: 0 .5rem"><div class="ui fitted slider checkbox" style="padding: 0.3em;"><input type="checkbox"><label></label>
+            <div class="detail" style="margin: 0 .5rem"><div class="ui fitted slider checkbox" style="padding: 0.3em;"><input checked type="checkbox"><label></label>
             </div></div>Present</a>
             <a class="ui blue basic tertiary label">Entry<div class="detail">Ready to Save</div></a>
-            <a class="ui negative basic tertiary label">Absent<div class="detail">Saved</div></a>
-            <a class="ui positive basic tertiary label">Present<div class="detail">Saved</div></a>
-            <a class="ui  tertiary basic label">Not Saved</a>
+            <a class="ui red basic tertiary label">Absent<div class="detail">Saved</div></a>
+            <a class="ui green basic tertiary label">Present<div class="detail">Saved</div></a>
+            <a class="ui tertiary basic label">Not Saved</a>
         </span></div>
         <div class="ui fluid fitted segment" style="text-wrap: nowrap;overflow-x: scroll;">
         <table class="ui last selectable stuck sortable table"  id="${id}_table"></table></div>`
