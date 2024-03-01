@@ -32,7 +32,7 @@
         "/lib/jQuery/jquery.min.js",
         "/lib/ulog/ulog-full.min.js",
         "/lib/semanticui/semantic.min.js",
-        "lib/markdownit/l̥l̥l̥l̥markdown-it.min.js",
+        "lib/markdownit/markdown-it.min.js",
         "/lib/semanticui/tablesort.js",
         "/lib/common/tool.js",
         "/lib/common/logging.js",
