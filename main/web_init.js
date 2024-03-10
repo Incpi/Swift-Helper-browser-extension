@@ -15,7 +15,7 @@ function lastbotmsg() {
     tokendata = JSON.stringify(msg.next_token)
     payload = load(payload, msg.messages)
     i = 0
-    index = 8
+    index = 2
     while (payload.length < index) {
         var msg_u = JSON.parse(posthttp('https://v2-bot-auth.cgslate.com/api/bot/get-messages', `{"bot_uuid":"0296339483100153","direction":"backward","next_token":${tokendata}}`, [`mobile,${localStorage.getItem('mobile')}`, `session-id,${localStorage.getItem('token')}`]))
         log.log(msg_u)
@@ -50,8 +50,9 @@ function GetTeacherData(lastmsglist, teacherDetails) {
 function examdetails(data) {
     $.each(data, function (index, item) {
         var payload = JSON.parse(item);
-        var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/\s+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
-        var subtab = $(`div.tab.segment[data-tab="${id}"]`);
+        var tabid= `${payload.subject.replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
+        var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
+        var subtab = $(`div.tab.segment[data-tab="${tabid}"]`);
         subtab.html(`<div style="width: 100%;display: inline-flex;justify-content: space-between;"><span>
             <a class="ui black basic label" data="${payload.examID}">Subject :<div class="detail">${payload.subject.split(":")[0]}</div></a>
             <a class="ui black basic label">Date :<div class="detail">${payload.subject.split(":")[1]}</div></a>
@@ -77,9 +78,10 @@ function fetchmenu(listdata) {
     var menuItems = '';
     $.each(listdata, function (index, item) {
         var payload = JSON.parse(item);
-        var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/\s+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
-        menuItems += `<div class="item fluid" data-tab="${id}">${id}</div>`;
-        container.append($(`<div class="ui tab segment" data-tab="${id}"></div>`));
+        var tabid= `${payload.subject.replaceAll(":", "_").replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
+        var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
+        menuItems += `<div class="item fluid" data-tab="${tabid}">${id}</div>`;
+        container.append($(`<div class="ui tab segment" data-tab="${tabid}"></div>`));
     });
     var menuDiv = $('<div class="ui secondary pointing menu"></div>');
     menuDiv.append(`<div class="item">Select Your Exam: </div>${menuItems}`);
@@ -236,7 +238,7 @@ function loading_data(token) {
         examdetails(lastdata);
         for (i of lastdata) {
             const payload = JSON.parse(i);
-            var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/\s+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
+            var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
             let exam = JSON.parse(httpGet(`https://saral-bot.gujaratvsk.org/api/get-exam-details?token=${token}&examID=${payload.examID}`));
             var student = JSON.parse(httpGet(`https://saral-bot.gujaratvsk.org/api/get-student-list?token=${token}&schoolCode=${payload.schoolCode}&grade=${payload.grade}&section=${payload.section}&examID=${payload.examID}`));
             fetch_table(`${id}_table`, exam, student);
