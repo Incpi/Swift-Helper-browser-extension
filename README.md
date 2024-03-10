@@ -19,6 +19,9 @@ I guarantee:
 Mark entry from csv/Txt file ans get saved.
 
 ## ChangeLog:
+## 3.4.0 
+ - "[Feature] better visuals due to color buttons",
+ - "[Improvement] Bugfix."
 ## 3.3.0
  - [BugFix] UI Color & bugfix
  - [BugFix] better visuals due to color

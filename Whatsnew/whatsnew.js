@@ -2,11 +2,8 @@ async function whatsNewCheck(showOnlyOnce = true) {
     var manifestVersion = chrome.runtime.getManifest().version;
     check = await storageGetPromise("WN_V" + manifestVersion);
     if (!check || showOnlyOnce == false) {
-        var x = document.getElementById(`WN_V`);
-        if (x) {
-            x.remove()
-        }
-        Content = `
+        $("#WN_V").remove();
+        const Content = `
         <div class="ui positive message">
             <div class="header content">You updated successfully to Version: ${manifestVersion}</div>
             <p>Just started ? go at <a href="https://incpi.github.io/Swift-Helper-browser-extension/" target="_blank">Details
@@ -83,28 +80,24 @@ async function whatsNewCheck(showOnlyOnce = true) {
             </div>
         </div>
         `
-        var textElement = document.createElement('div')
-        textElement.innerHTML = `<div class="ui header">
+        var textElement = $("<div>").html(`<div class="ui header">
             <img class='ui centered image' src=${chrome.runtime.getURL("docs/images/logobig.svg")}></img>
             <div style="float: right;font-size: 1.3rem;" class="ui orange large basic text">Version: ${manifestVersion}</div>
-        </div>
-        <div class="scrolling content">${Content}</div>`
-        textElement.classList = "ui fullscreen modal"
-        textElement.id = `WN_V`
-        document.body.appendChild(textElement);
-        $(`#WN_V`).modal({
+        </div><div class="scrolling content">${Content}</div>`).addClass("ui fullscreen modal").attr("id", "WN_V");
+        $("body").append(textElement);
+        $("#WN_V").modal({
             blurring: true,
             allowMultiple: true,
             scrollbarWidth: 20,
             actions: [{ text: 'Close', class: 'black' }]
         }).modal('show');
-        $('.menu .item').tab()
+        $('.menu .item').tab();
         var obj = {};
         obj["WN_V" + manifestVersion] = "show";
         chrome.storage.local.set(obj, function () {
             log.log("whats new displayed and saved");
         });
-        return true
+        return true;
     }
-    return false
+    return false;
 }

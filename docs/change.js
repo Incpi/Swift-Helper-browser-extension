@@ -27,3 +27,30 @@ document.querySelector('#readme').innerHTML = container
 $('.ui.embed').embed();
 //Date set timezome
 document.querySelector('.list span.green').innerHTML = `${Math.round((new Date() - new Date(datelastchg)) / 86400000)} Days ago`
+
+function toggleTheme() {
+    $('body').toggleClass('light-theme dark-theme');
+    var currentTheme = $('body').hasClass('light-theme') ? 'light' : 'dark';
+    localStorage.setItem('theme', currentTheme);
+}
+
+function setInitialTheme() {
+    var currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'dark') {
+        $('body').addClass('dark-theme');
+    } else {
+        $('body').addClass('light-theme');
+    }
+}
+
+$(document).ready(function() {
+    setInitialTheme();
+    document.querySelectorAll("#theme-toggle-button .button")[localStorage.theme === 'dark' ? 1 : 0].classList.add('positive')
+});
+
+$('#theme-toggle-button').click(function() {
+    document.querySelectorAll("#theme-toggle-button .button").forEach(element => {
+        element.classList.contains("positive") ? element.classList.remove("positive") : element.classList.add("positive");
+      })
+    toggleTheme();
+});

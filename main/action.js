@@ -50,7 +50,6 @@ function web_import() {
     });
 }
 
-//pending
 function file_input(varinput) {
     var constcol = 5
     listraw = varinput.split("\n").slice(1)
@@ -86,9 +85,9 @@ function web_export(x = 0) {    // Getting values of current time for generating
     const postfix = `${dateTime.getDate()}.${dateTime.getMonth() + 1}.${dateTime.getFullYear()}_${dateTime.getHours()}.${dateTime.getMinutes()}`;
 
     filename = []
-    document.querySelectorAll('#sx_model div.ui.tab.segment.active span:nth-child(1) .detail').forEach(e => filename.push(e.innerText))
+    $('#sx_model div.ui.tab.segment.active span:nth-child(1) .detail').forEach(e => filename.push(e.innerText))
     let tablecsv = "";
-    raw = document.querySelectorAll('#sx_model > div.content > div.ui.tab.segment.active table tr')
+    raw = $('#sx_model > div.content > div.ui.tab.segment.active table tr')
     for (const cell of raw) {
         cell_count = 1
         for (const iterator of cell.children) {
@@ -135,13 +134,13 @@ function web_export(x = 0) {    // Getting values of current time for generating
 }
 
 function web_save(id = '#progressbar') {
-    data_btn = document.querySelectorAll('#sx_model div.ui.tab.segment.active tr.blue .button:not(.disabled),#sx_model div.ui.tab.segment.active tr.negative .button:not(.disabled)')
+    data_btn = $('#sx_model div.ui.tab.segment.active tr.blue .button:not(.disabled),#sx_model div.ui.tab.segment.active tr.negative .button:not(.disabled)')
     if (data_btn.length === 0) {
         successToast("NO DATA FOUND", "", 0)
         return
     }
     function myLoop() {
-        data_btn = document.querySelectorAll('#sx_model div.ui.tab.segment.active tr.blue .button:not(.disabled),#sx_model div.ui.tab.segment.active tr.negative .button:not(.disabled)')
+        data_btn = $('#sx_model div.ui.tab.segment.active tr.blue .button:not(.disabled),#sx_model div.ui.tab.segment.active tr.negative .button:not(.disabled)')
         timeout = 500
         setTimeout(function () {
             data_btn[0].dispatchEvent(new Event('click'))
@@ -149,7 +148,7 @@ function web_save(id = '#progressbar') {
                 data_btn[0].classList.add('disabled')
             }
             if (data_btn.length !== 0) { myLoop() } else {
-                document.querySelectorAll('#sx_model div.ui.tab.segment.active tr.blue .button.disabled,#sx_model div.ui.tab.segment.active tr.negative .button.disabled').forEach(e => e.classList.remove('disabled'));
+                $('#sx_model div.ui.tab.segment.active tr.blue .button.disabled,#sx_model div.ui.tab.segment.active tr.negative .button.disabled').forEach(e => e.classList.remove('disabled'));
             }
         }, timeout)
     }
@@ -180,7 +179,7 @@ function errorToast(title, i, timeout) {
         showProgress: 'bottom',
         classProgress: 'black',
         showIcon: true,
-        class: 'negative',
+        class: 'red',
         displayTime: timeout,
         transition: {
             closeEasing: 'easeOutBounce'
@@ -192,7 +191,7 @@ function successToast(title, i, timeout) {
         title: title,
         message: i,
         showProgress: 'bottom',
-        classProgress: 'positive',
+        classProgress: 'green',
         transition: {
             showMethod: 'zoom',
             showDuration: timeout,

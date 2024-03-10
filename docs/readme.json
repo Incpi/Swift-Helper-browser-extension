@@ -4,11 +4,10 @@
     "yt_link": "m3Bl3_A4puw",
     "data": [
         {
-            "version": "3.3.0",
+            "version": "3.4.0",
             "text": [
-                "[BugFix] UI Color & bugfix",
-                "[BugFix] better visuals due to color",
-                "[Feature] Import improved to limit change depending import only."
+                "[Feature] better visuals due to color buttons",
+                "[Improvement] Bugfix."
             ]
         },
         {
