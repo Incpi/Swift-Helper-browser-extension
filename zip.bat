@@ -1,16 +1,29 @@
 @echo off
 
 rem Remove existing zip file
-del /q bin\Swift-Helper-browser-extension*.zip
+del /q bin\*.zip
 
-rem Read version from manifest.json using PowerShell and save it to a temporary file
-powershell -Command "(Get-Content manifest.json | ConvertFrom-Json).version" > version.tmp
+rem Read name and version from manifest.json
+for /f "usebackq tokens=2 delims=:" %%a in (`type manifest.json ^| findstr /C:"\"name\":" /C:"\"version\":"`) do (
+    for /f "tokens=*" %%n in ("%%~a") do (
+        if not defined name (
+            set "name=%%~n"
+        ) else (
+            set "version=%%~n"
+        )
+    )
+)
 
-rem Read version from the temporary file
-set /p version=<version.tmp
+rem Remove double quotes and leading/trailing spaces from the name and version strings
+set name=%name:"=%
+set version=%version:"=%
+set version=%version:,=%
+rem Replace spaces with underscores in the name
+set name=%name: =_%
+set name=%name:,=%
 
-rem Delete the temporary file
-del /q version.tmp
+rem Echo the filename
+echo %name%-%version%.zip
 
-rem Create a new zip file with version number appended to the filename
-powershell Compress-Archive -Path * -DestinationPath "bin\Swift-Helper-browser-extension-%version%.zip"
+rem Create a new zip file with name and version appended to the filename
+powershell Compress-Archive -Path * -DestinationPath "bin\%name%_%version%.zip"
