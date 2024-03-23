@@ -14,46 +14,41 @@ function lastbotmsg() {
     }
     tokendata = JSON.stringify(msg.next_token)
     payload = load(payload, msg.messages)
-    i = 0
-    index = 2
-    while (payload.length < index) {
-        var msg_u = JSON.parse(posthttp('https://v2-bot-auth.cgslate.com/api/bot/get-messages', `{"bot_uuid":"0296339483100153","direction":"backward","next_token":${tokendata}}`, [`mobile,${localStorage.getItem('mobile')}`, `session-id,${localStorage.getItem('token')}`]))
-        log.log(msg_u)
-        payload = load(payload, msg_u.messages)
-        tokendata = JSON.stringify(msg_u.next_token)
-        i++
-    }
+    // i = 0
+    // while (payload.length < 3 || i <= 3) {
+    var msg_u = JSON.parse(posthttp('https://v2-bot-auth.cgslate.com/api/bot/get-messages', `{"bot_uuid":"0296339483100153","direction":"backward","next_token":${tokendata}}`, [`mobile,${localStorage.getItem('mobile')}`, `session-id,${localStorage.getItem('token')}`]))
+    payload = load(payload, msg_u.messages)
+    tokendata = JSON.stringify(msg_u.next_token)
+    //     i++
+    // }
     return payload
 }
 function GetTeacherData(lastmsglist, teacherDetails) {
-    var get_bot_static = JSON.parse(posthttp('https://v2-bot-auth.cgslate.com/api/bot/get-bot-user-details', `{"bot_uuid":"0296339483100153"}`, [`mobile,${localStorage.getItem('mobile')}`, `session-id,${localStorage.getItem('token')}`]));
-    var div = $('<div>').addClass('ui menu segment');
-    var segement = $('<span>').addClass('ui item small header').text('Teacher Details');
-    $.each(lastmsglist, function (i, value) {
-        if (i in teacherDetails) {
-            var label = $('<a>').addClass('ui active item large basic label').append(
-                $('<div>').text(teacherDetails[i]),
-                $('<div>').addClass('detail').text(value)
-            );
-            segement.append(label);
-        }
-    });
-    var imageLabel = $('<a>').addClass('ui right item image label').append(
-        $('<img>').addClass('ui rounded centered image').attr('src', get_bot_static.configuration.photo),
-        $('<span>').text(get_bot_static.configuration.name),
-        $('<span>').addClass(`ui basic ${get_bot_static.configuration.status === "ACTIVE" ? "green" : "red"} basic label`).text(get_bot_static.subscriber_count)
-    );
-    div.append(segement, imageLabel);
-    return div;
-}
 
+    // data = `<button class="ui secondary fluid  button"><i class="icon double fan loading"></i>Loading</button>`;
+    // container.innerHTML += data;
+    get_bot_static = JSON.parse(posthttp('https://v2-bot-auth.cgslate.com/api/bot/get-bot-user-details', `{"bot_uuid":"0296339483100153"}`, [`mobile,${localStorage.getItem('mobile')}`, `session-id,${localStorage.getItem('token')}`]))
+    div = document.createElement('div')
+    div.classList = "ui menu segment"
+    segement = `<span class="ui item small header">Teacher Details</span>`
+    for (i in lastmsglist) {
+        if (Object.keys(teacherDetails).includes(i)) {
+            segement += `<a class="ui active item large basic label">${teacherDetails[i]}<div class="detail">${lastmsglist[i]}</div> </a>`
+        }
+    }
+    segement += `
+    <a class="ui right item image label"><img class='ui rounded centered image' src="${get_bot_static.configuration.photo}"> ${get_bot_static.configuration.name} <span class="ui basic ${get_bot_static.configuration.status === "ACTIVE" ? "green" : "red"} basic label"> ${get_bot_static.subscriber_count} </span></a></div >`
+    div.innerHTML += segement
+    return div
+}
 function examdetails(data) {
-    $.each(data, function (index, item) {
-        var payload = JSON.parse(item);
-        var tabid= `${payload.subject.replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
-        var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
-        var subtab = $(`div.tab.segment[data-tab="${tabid}"]`);
-        subtab.html(`<div style="width: 100%;display: inline-flex;justify-content: space-between;"><span>
+    for (i of data) {
+        payload = JSON.parse(i)
+        var tabid = `${payload.subject.replaceAll(":", "_").replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
+        var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/\s+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`
+        subtab = document.querySelector(`div.tab.segment[data-tab="${tabid}"]`)
+        log.log(tabid, subtab)
+        subtab.innerHTML = `<div style="width: 100%;display: inline-flex;justify-content: space-between;"><span>
             <a class="ui black basic label" data="${payload.examID}">Subject :<div class="detail">${payload.subject.split(":")[0]}</div></a>
             <a class="ui black basic label">Date :<div class="detail">${payload.subject.split(":")[1]}</div></a>
             <a class="ui black basic label">Grade :<div class="detail">${payload.grade}-${payload.section}</div></a>
@@ -69,147 +64,122 @@ function examdetails(data) {
             <a class="ui tertiary basic label">Not Saved</a>
         </span></div>
         <div class="ui fluid fitted segment" style="text-wrap: nowrap;overflow-x: scroll;">
-        <table class="ui last selectable stuck sortable table"  id="${id}_table"></table></div>`);
-    });
+        <table class="ui last selectable stuck sortable table"  id="${id}_table"></table></div>`
+    }
 }
-
 function fetchmenu(listdata) {
-    const container = $('#sx_model .content');
-    var menuItems = '';
-    $.each(listdata, function (index, item) {
-        var payload = JSON.parse(item);
-        var tabid= `${payload.subject.replaceAll(":", "_").replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
+    const container = document.querySelector('#sx_model .content')
+    element = []
+    div = document.createElement('div')
+    div.classList = "ui secondary pointing menu"
+    menuItems = `<div class="item">Select Your Exam: </div> `
+    for (i of listdata) {
+        payload = JSON.parse(i)
+        var tabid = `${payload.subject.replaceAll(":", "_").replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
         var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
         menuItems += `<div class="item fluid" data-tab="${tabid}">${id}</div>`;
-        container.append($(`<div class="ui tab segment" data-tab="${tabid}"></div>`));
-    });
-    var menuDiv = $('<div class="ui secondary pointing menu"></div>');
-    menuDiv.append(`<div class="item">Select Your Exam: </div>${menuItems}`);
-    container.prepend(menuDiv);
+    }
+    div.innerHTML = menuItems,
+        container.appendChild(div)
+    for (i of listdata) {
+        payload = JSON.parse(i)
+        var tabid = `${payload.subject.replaceAll(":", "_").replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
+        container.appendChild(createElementFromHTML(`<div class="ui tab segment" data-tab="${tabid}"></div>`))
+    }
 }
-
 function fetch_table(id, exam, student) {
-    var tablegen = '<thead><tr><th>Sr No.</th><th>Student Name</th><th>Student ID</th><th>Gender</th><th>P/A</th>';
-    $.each(exam, function (index, item) {
-        tablegen += `<th>${item.questionTitle}</th>`;
-    });
-    tablegen += '<th>Total</th><th>Submit</th></tr></thead><tbody>';
-    $.each(student, function (index, item) {
-        var marks = item.scores ? (item.scores.status === 1 ? item.scores.obtainedMarks : 0) : 0;
-        var buttonDisabledClass = item.scores ? (item.scores.status === 1 ? "green disabled" : "red disabled") : "blue disabled";
-        var row = `<tr sid="${item.studentId}">
-            <td class="pi1 enter fluid">${((index + 1) < 10) ? '0' + (index + 1).toString() : index + 1}</td>
-            <td class="pi1 enter fluid">${item.studentName} ${item.fatherName[0]}. ${item.surName}</td>
-            <td class="pi1 enter fluid">${item.studentId}</td> 
-            <td class="pi1 enter fluid">${item.gender}</td>
-            <td class="pi1 enter fluid left marked">
-            <div class="ui fitted slider checkbox"><input type="checkbox"><label></label></div></td>`;
-        $.each(exam, function (idx, it) {
-            row += `<td><div class="ui fluid input"><input max="${find_obj_value(exam, 'questionTitle', it.questionTitle, 'questionMaxScore')}" placeholder="${it.questionTitle}" min="0" type="number"></div></td>`;
-        });
-        row += `<td class="pi1 enter fluid">${marks}</td>
-            <td><div class="ui icon fluid ${buttonDisabledClass} inverted animated fade button" tabindex="0">
-            <div class="visible content">Done</div><div class="hidden content">Save</div></div></td></tr>`;
-        tablegen += row;
-    });
-    tablegen += '</tbody>';
-    $('#' + id).html(tablegen);
+    tablegen = `<thead><tr><th>Sr No.</th><th>Student Name</th><th>Student ID</th><th>Gender</th><th>P/A</th>`
+    for (i = 0; i < exam.length; i++) { tablegen += `<th>${exam[i].questionTitle}</th>` }
+    tablegen += `  <th>Total</th><th>Submit</th></tr></thead><tbody>`;
+    for (st = 0; st < student.length; st++) {
+        tablegen += `<tr sid="${student[st].studentId}">
+                    <td class="pi1 enter fluid" >${((st + 1) < 10) ? '0' + (st + 1).toString() : st + 1}</td>
+                    <td class="pi1 enter fluid" >${student[st].studentName} ${student[st].fatherName[0]}. ${student[st].surName}</td>
+                    <td class="pi1 enter fluid">${student[st].studentId}</td> 
+                    <td class="pi1 enter fluid">${student[st].gender}</td>
+                    <td class="pi1 enter fluid left marked">
+                    <div class="ui fitted slider checkbox"><input type="checkbox"><label></label></div></td>`
+        for (i = 0; i < exam.length; i++) {
+            tablegen += `<td><div class="ui fluid input"><input max="${find_obj_value(exam, 'questionTitle', exam[i].questionTitle, 'questionMaxScore')}" placeholder="${exam[i].questionTitle}" min="0" type="number"></div></td>`
+        }
+        tablegen += `<td class="pi1 enter fluid">${student[st].scores ? (student[st].scores.status === 1 ? student[st].scores.obtainedMarks : 0) : 0}</td>
+            <td><div class="ui icon fluid ${student[st].scores ? ((student[st].scores.status === 1) ? "positive disabled" : "disabled") : ""} animated fade button" tabindex="0">
+            <div class="visible content">Done</div><div class="hidden content">Save</div></div></td></tr>`
+    }
+    tablegen += "</tbody>"
+    document.querySelector(`#${id}`).innerHTML = tablegen
 }
-
 function load_marks_online(id, exam, student) {
-    student.forEach(function (data) {
-        if (data.scores) {
-            if (data.scores.status === 1) { // Passed
-                $(`#${id} tr[sid=${data.studentId}]`).addClass("positive");
-                $(`#${id} tr[sid=${data.studentId}] input[type="checkbox"]`).prop('checked', true);
-                var examdata = sort(data.scores.questions, "questionID");
-                for (var i = 0; i < examdata.length; i++) {
-                    $(`#${id} tr[sid="${data.studentId}"] input[type="number"]`).eq(i).val(find_obj_value(examdata, 'questionTitle', $(`#${id} thead > tr > th`).eq(i + 5).text(), 'score'));
+    for (st = 0; st < student.length; st++) {
+        if (student[st].scores) {
+            if (student[st].scores.status === 1) {//p
+                $(`#${id} tr[sid=${student[st].studentId}]`).addClass("positive");
+                $(`#${id} tr[sid=${student[st].studentId}] input[type="checkbox"]`).prop('checked', true);
+                examdata = sort(student[st].scores.questions, "questionID")
+                for (i = 0; i < examdata.length; i++) {
+                    document.querySelectorAll(`#${id} tr[sid="${student[st].studentId}"] input[type="number"]`)[i].value = find_obj_value(examdata, 'questionTitle', document.querySelectorAll(`#${id} thead > tr > th`)[i + 5].innerText, 'score')
                 }
-            } else { // Failed
-                $(`#${id} tr[sid=${data.studentId}]`).addClass("negative");
-                $(`#${id} tr[sid="${data.studentId}"] input[type="number"]`).addClass('disabled');
-                $(`#${id} tr[sid=${data.studentId}] input[type="checkbox"]`).prop('checked', false);
+            } else {//a
+                $(`#${id} tr[sid=${student[st].studentId}]`).addClass("negative");
+                document.querySelectorAll(`#${id} tr[sid="${student[st].studentId}"] input[type="number"]`).forEach(e => e.classList.add('disabled'))
+                $(`#${id} tr[sid=${student[st].studentId}] input[type="checkbox"]`).prop('checked', false);
             }
-        } else { // No score
-            $(`#${id} tr[sid=${data.studentId}]`).removeClass("positive negative");
-            $(`#${id} tr[sid=${data.studentId}] input[type="checkbox"]`).prop('checked', true);
+        } else {
+            $(`#${id} tr[sid=${student[st].studentId}]`).addClass("");
+            $(`#${id} tr[sid=${student[st].studentId}] input[type="checkbox"]`).prop('checked', true);
         }
-    });
+    }
 }
-
 function tablelisten(id, exam, lastdata) {
-    $(`#${id} tr`).on('change', function () {
-        var m = 0;
-        $(`#${id} tr[sid="${$(this).attr('sid')}"] input[type="number"]`).each(function () {
-            m += parseInt($(this).val());
+    document.querySelectorAll(`#${id} tr`).forEach(e => e.addEventListener('change', () => {
+        m = 0; document.querySelectorAll(`#${id} tr[sid="${e.getAttribute('sid')}"] input[type="number"]`).forEach(mark => m += parseInt(mark.value))
+        document.querySelector(`#${id} tr[sid="${e.getAttribute('sid')}"] td:nth-last-child(2)`).innerHTML = m;
+        e.classList.contains('positive') ? e.classList.remove('positive') : ""
+        !(e.classList.contains('blue')) ? e.classList.add('blue') : ""
+        document.querySelector(`#${id} tr[sid="${e.getAttribute('sid')}"] .animated`).classList.remove('disabled', 'positive')
+    }))
+    document.querySelectorAll(`#${id} tr[sid]`).forEach(e => {
+        e.querySelector(`.slider.checkbox`).addEventListener('click', () => {
+            x = e.querySelector(`input[type="checkbox"]`);
+            inputs = e.querySelectorAll(`input[type="number"]`);
+            x.checked ? x.parentNode.parentNode.classList.replace('negative', "positive") : x.parentNode.parentNode.classList.replace("positive", 'negative')
+            x.checked ? inputs.forEach(i => i.parentNode.classList.remove('disabled')) : inputs.forEach(i => i.parentNode.classList.add('disabled'));
         });
-        $(`#${id} tr[sid="${$(this).attr('sid')}"] td:nth-last-child(2)`).html(m);
-        $(this).removeClass('positive');
-        if (!$(this).hasClass('blue')) {
-            $(this).addClass('blue');
-        }
-        $(`#${id} tr[sid="${$(this).attr('sid')}"] .animated`).removeClass('disabled positive');
-    });
-
-    $(`#${id} tr[sid]`).each(function () {
-        var $this = $(this);
-        $this.find('.slider.checkbox').on('click', function () {
-            var x = $this.find('input[type="checkbox"]');
-            var inputs = $this.find('input[type="number"]');
-            if (x.prop('checked')) {
-                x.closest('tr').removeClass('negative').addClass('positive');
-                inputs.removeClass('disabled');
-            } else {
-                x.closest('tr').removeClass('positive').addClass('negative');
-                inputs.addClass('disabled');
-            }
-        });
-
-        $this.find('.button').on('click', function () {
-            makebody(lastdata, $this[0], exam);
-        });
-    });
+        e.querySelector(`.button`).addEventListener('click', () => { makebody(lastdata, e, exam) })
+    })
 }
 function makebody(lastdata, trdata, exam) {
-    return new Promise((resolve, reject) => {
-        var suid = trdata.getAttribute('sid');
-        var arr = [];
-        var maxsum = 0;
-        var sum = 0;
-        $(trdata).find('input[type="number"]').each(function () {
-            arr.push($(this).val());
-        });
-        var x = { "questions": [] };
-        $.each(exam, function (index, e) {
-            maxsum += e.questionMaxScore;
-            x.questions.push({
-                "questionTitle": `${e.questionTitle}`, "questionID": String(e.questionID), "score": `${arr[parseInt(String(e.questionTitle).replace("Q", "")) - 1]}`
-            });
-        });
-        $.each(x.questions, function (index, e) {
-            sum += parseInt(e.score);
-        });
-        setTimeout(() => {
-            var present = $(trdata).find("input[type='checkbox']").prop("checked") ? 1 : 2;
-            var examid = $('#sx_model div.active a[data]').attr('data');
-            var body = '';
-            for (var i in lastdata) {
-                var payload = JSON.parse(lastdata[i]);
-                if (payload.examID == examid) {
-                    body = `{"data": {"studentID": "${suid}","examID": "${payload.examID}","schoolCode": "${payload.schoolCode}","section": "${payload.section}","userMobile": "${payload.userMobile}","teacherCode": "${payload.teacherCode}","teacherName": "${payload.teacherName}","userMedium": "${payload.userMedium}","grade": "${payload.grade}",`;
-                    break;
-                }
+    suid = trdata.getAttribute('sid')
+    arr = []
+    maxsum = 0;
+    sum = 0;
+    trdata.querySelectorAll('input[type="number"]').forEach(e => arr.push(e.value))
+    x = { "questions": [] };
+    exam.forEach(e => {
+        maxsum += e.questionMaxScore
+        x.questions.push({
+            "questionTitle": `${e.questionTitle}`, "questionID": String(e.questionID), "score": `${arr[parseInt(String(e.questionTitle).replace("Q", "")) - 1]}`
+        })
+    })
+    x.questions.forEach(e => sum += parseInt(e.score))
+    sleep(250).then(() => {
+        present = trdata.querySelector("input[type='checkbox']").checked ? 1 : 2
+        examid = document.querySelector('#sx_model div.active a[data]').getAttribute('data')
+        for (i in lastdata) {
+            payload = JSON.parse(lastdata[i])
+            if (payload.examID == examid) {
+                body = `{"data": {"studentID": "${suid}","examID": "${payload.examID}","schoolCode": "${payload.schoolCode}","section": "${payload.section}","userMobile": "${payload.userMobile}","teacherCode": "${payload.teacherCode}","teacherName": "${payload.teacherName}","userMedium": "${payload.userMedium}","grade": "${payload.grade}",`
+                break
             }
-            if (present === 1) {
-                body += `"scores": { "status": ${parseInt(present)},"totalMarks": ${parseInt(maxsum)},"obtainedMarks": ${parseInt(sum)},"questions":${JSON.stringify(x.questions)}}}}`;
-            } else {
-                body += `"scores": { "status": ${parseInt(present)}}}}`;
-            }
-            body = body.replaceAll(/[\n\r]+/g, "");
-            console.log(body);
-            resolve(posthttp(`https://saral-bot.gujaratvsk.org/api/save-student-scores?token=${token}`, body, [], trdata));
-        }, 250);
+        }
+        if (present === 1) {
+            body += `"scores": { "status": ${parseInt(present)},"totalMarks": ${parseInt(maxsum)},"obtainedMarks": ${parseInt(sum)},"questions":${JSON.stringify(x.questions)}}}}`
+        } else {
+            body += `"scores": { "status": ${parseInt(present)}}}}`
+        }
+        body = body.replaceAll(/[\n\r]+/g, "");
+        log.debug(body)
+        return posthttp(`https://saral-bot.gujaratvsk.org/api/save-student-scores?token=${token}`, body, [], trdata)
     });
 }
 
@@ -219,43 +189,41 @@ function sort(data, key) {
 
 //trigger
 function loading_data(token) {
-    const container = $('#sx_model .content');
-    container.empty();
-    lastdata = lastbotmsg();
-
+    const container = document.querySelector('#sx_model .content')
+    container.innerHTML = "";
+    lastdata = lastbotmsg()
     if (lastdata.length === 0) {
-        let Nodiv = $('<div>').addClass("ui segment").html(`
+        let Nodiv = document.createElement('div')
+        Nodiv.classList = "ui segment"
+        Nodiv.innerHTML = `
             <div class="ui segment fluid">
             No data is available. Please select exam in Xamta-bot. <br/> Please goto help section below for more information,</div>
-            <a class="fluid ui secondary button" target="_blank" href="https://incpi.github.io">Go to Help Site</a> `);
-        container.append(Nodiv);
+            <a class="fluid ui secondary button" target="_blank" href="https://incpi.github.io">Go to Help Site</a> `
+        container.appendChild(Nodiv)
     } else {
-        const lists = { "schoolCode": "School Code :", "userMobile": "Teacher's Mobile :", "teacherCode": "Teacher's Code :", "teacherName": "Teacher's Name :" };
+        const lists = { "schoolCode": "School Code :", "userMobile": "Teacher's Mobile :", "teacherCode": "Teacher's Code :", "teacherName": "Teacher's Name :" }
         //teacher data
-        container.append(GetTeacherData(JSON.parse(lastdata[0]), lists));
+        container.appendChild(GetTeacherData(JSON.parse(lastdata[0]), lists))
         //GET exam MENU
-        fetchmenu(lastdata);
-        examdetails(lastdata);
+        fetchmenu(lastdata)
+        examdetails(lastdata)
         for (i of lastdata) {
-            const payload = JSON.parse(i);
-            var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/[:,\s]+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`;
-            let exam = JSON.parse(httpGet(`https://saral-bot.gujaratvsk.org/api/get-exam-details?token=${token}&examID=${payload.examID}`));
-            var student = JSON.parse(httpGet(`https://saral-bot.gujaratvsk.org/api/get-student-list?token=${token}&schoolCode=${payload.schoolCode}&grade=${payload.grade}&section=${payload.section}&examID=${payload.examID}`));
-            fetch_table(`${id}_table`, exam, student);
-            console.log(exam);
-            tablelisten(`${id}_table`, exam, lastdata);
-            load_marks_online(`${id}_table`, exam, student);
-            $(`#${id}_table`).tablesort();
+            const payload = JSON.parse(i)
+            var id = `${payload.subject.split(" ")[0].split(":")[0].replaceAll(/\s+/g, "_")}_${payload.grade}_${payload.section}_${payload.userMedium}`
+            let exam = JSON.parse(httpGet(`https://saral-bot.gujaratvsk.org/api/get-exam-details?token=${token}&examID=${payload.examID}`))
+            var student = JSON.parse(httpGet(`https://saral-bot.gujaratvsk.org/api/get-student-list?token=${token}&schoolCode=${payload.schoolCode}&grade=${payload.grade}&section=${payload.section}&examID=${payload.examID}`))
+            fetch_table(`${id}_table`, exam, student)
+            log.debug(exam)
+            tablelisten(`${id}_table`, exam, lastdata)
+            load_marks_online(`${id}_table`, exam, student)
+            $(`#${id}_table`).tablesort()
         }
     }
     // Activate tab on hover
-    $('.menu .item.fluid').on('mouseenter', function () {
-        $(this).tab('change tab', $(this).attr('id'));
-    });
+    $('.menu .item.fluid').on('mouseenter', function () { $(this).tab('change tab', $(this).attr('id')) });
     // Initialize tabs
     $('.menu .item.fluid').tab();
 }
-
 function configuration() {
     loading_data(token = 'f9b9ba1f-bf3a-450e-8d67-6c2a9f7977f55')
 }

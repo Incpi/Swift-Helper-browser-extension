@@ -63,7 +63,7 @@
     "*://*.convegenius.ai/*"
   ],
   "short_name": "S_Helper",
-  "version": "3.4.0",
+  "version": "3.4.2",
   "web_accessible_resources": [
     {
       "resources": [
