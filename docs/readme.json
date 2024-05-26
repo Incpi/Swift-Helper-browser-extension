@@ -1,8 +1,14 @@
 {
-    "date": "02-24-24",
+    "date": "05-26-24",
     "format": "mm-dd-yyyy",
     "yt_link": "m3Bl3_A4puw",
     "data": [
+        {
+            "version": "3.4.5",
+            "text": [
+                "[Feature] BugFix and Go Live on Chrome Store."
+            ]
+        },
         {
             "version": "3.4.0",
             "text": [
