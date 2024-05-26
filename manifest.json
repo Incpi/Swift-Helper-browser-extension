@@ -1,4 +1,21 @@
 {
+  "manifest_version": 3,
+  "name": "Swift Helper",
+  "version": "3.4.5",
+  "description": "This extension will help to automate mark data entry on bot like Xamta for Teachers.",
+  "author": "Omkar Patel",
+  "homepage_url": "https://incpi.github.io",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "Swift-Helper@incpi"
+    }
+  },
+  "icons": {
+    "16": "docs/images/icons/icon16.png",
+    "32": "docs/images/icons/icon32.png",
+    "48": "docs/images/icons/icon48.png",
+    "128": "docs/images/icons/icon128.png"
+  },
   "action": {
     "default_icon": {
       "16": "docs/images/icons/icon16.png",
@@ -7,20 +24,7 @@
       "128": "docs/images/icons/icon128.png"
     },
     "default_popup": "popup/popup.html",
-    "default_title": "Swift Helper",
-    "show_matches": [
-      "https://*.convegenius.ai/*"
-    ]
-  },
-  "applications": {
-    "gecko": {
-      "id": "Swift-Helper@incpi"
-    }
-  },
-  "author": "Omkar Patel",
-  "background": {
-    "service_worker": "/background/background.js",
-    "type": "module"
+    "default_title": "Swift Helper"
   },
   "content_scripts": [
     {
@@ -32,7 +36,7 @@
         "/lib/jQuery/jquery.min.js",
         "/lib/ulog/ulog-full.min.js",
         "/lib/semanticui/semantic.min.js",
-        "lib/markdownit/markdown-it.min.js",
+        "/lib/markdownit/markdown-it.min.js",
         "/lib/semanticui/tablesort.js",
         "/lib/common/tool.js",
         "/lib/common/logging.js",
@@ -46,33 +50,21 @@
       ]
     }
   ],
-  "description": "This extension will help to Automate mark data entry on bot like xamta and saralgujarat for Teachers.",
-  "homepage_url": "https://incpi.github.io",
-  "icons": {
-    "16": "docs/images/icons/icon16.png",
-    "32": "docs/images/icons/icon32.png",
-    "48": "docs/images/icons/icon48.png",
-    "128": "docs/images/icons/icon128.png"
-  },
-  "manifest_version": 3,
-  "name": "Swift Helper",
   "permissions": [
-    "declarativeContent",
-    "storage",
-    "webRequest",
-    "*://*.convegenius.ai/*"
+    "storage"
   ],
-  "short_name": "S_Helper",
-  "version": "3.4.2",
   "web_accessible_resources": [
     {
       "resources": [
-        "/docs/images/*",
+        "docs/images/*",
         "lib/*"
       ],
       "matches": [
-        "*://*.convegenius.ai/*"
+        "https://*.convegenius.ai/*"
       ]
     }
-  ]
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  }
 }

@@ -19,6 +19,9 @@ I guarantee:
 Mark entry from csv/Txt file ans get saved.
 
 ## ChangeLog:
+## 3.4.5
+- [Bugfix] BugFix and Go Live on Chrome Store.
+
 ## 3.4.0 
  - "[Feature] better visuals due to color buttons",
  - "[Improvement] Bugfix."

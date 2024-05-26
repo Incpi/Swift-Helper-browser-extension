@@ -17,11 +17,9 @@ async function whatsNewCheck(showOnlyOnce = true) {
             <div class="ui segment"><div class="ui relaxed list">
                 <div class="item">
                     <div class="content">
-                        <span class="ui medium header">3.3.0</span>
+                        <span class="ui medium header">${manifestVersion}</span>
                         <ul>
-                            <li>[BugFix] UI Color &amp; bugfix</li><br>
-                            <li>[BugFix] better visuals due to color</li><br>
-                            <li>[Feature] Import improved to limit change depending import only.</li><br>
+                            <li>[BugFix] BugFix and Go Live on Chrome Store.</li><br>
                         </ul>
                     </div>
                 </div>

@@ -27,3 +27,5 @@ echo %name%-%version%.zip
 
 rem Create a new zip file with name and version appended to the filename
 powershell Compress-Archive -Path * -DestinationPath "bin\%name%_%version%.zip"
+
+pause
